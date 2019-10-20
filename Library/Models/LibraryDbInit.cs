@@ -19,10 +19,34 @@ namespace Library.Models {
             Author author3 = new Author("Stephen Hawking");
             Author author4 = new Author("Elon Musk");
 
-            Book book1 = new Book("1234566", "The Count of Monte Cristo", "My first book", author1);
-            Book book2 = new Book("09812314", "The Gravity", "Book about gravity", author2);
-            Book book3 = new Book("345231234", "The Deep Universe", "A book about the universe and black holes.", author3);
-            Book book4 = new Book("3453451", "Robots Or Aliens ?", "A book about AI.", author4);
+            Book book1 = new Book()
+            {
+                ISBN = "1234566",
+                Title = "The Count of Monte Cristo",
+                Description = "My first book",
+                BookAuthor =  author1
+            };
+            Book book2 = new Book()
+            {
+                ISBN = "09812314",
+                Title = "The Gravity",
+                Description = "Book about gravity",
+                BookAuthor =  author2
+            };
+            Book book3 = new Book()
+            {
+                ISBN = "345231234",
+                Title = "The Deep Universe",
+                Description = "A book about the universe and black holes.",
+                BookAuthor =  author2
+            };
+            Book book4 = new Book()
+            {
+                ISBN = "3453451",
+                Title = "Robots Or Aliens ? The quest",
+                Description = "A book about AI.",
+                BookAuthor =  author4
+            };
 
             BookCopy book1Copy1 = new BookCopy(book1, 5);
             BookCopy book1Copy2 = new BookCopy(book1, 1);
@@ -33,10 +57,10 @@ namespace Library.Models {
             BookCopy book4Copy2 = new BookCopy(book4, 4);
             BookCopy book4Copy3 = new BookCopy(book4, 6);
 
-            //Member member1 = new Member("900110-1002", "Sir Alex", new DateTime(2015, 10, 4));
-            //Member member2 = new Member("950109-9162", "Cristiano Rivaldo", new DateTime(2010, 12, 10));
-            //Member member3 = new Member("891020-9873", "Bill Cakes", new DateTime(2012, 09, 02));
-            //Member member4 = new Member("851224-2351", "Edward Billden", new DateTime(2000, 10, 16));
+            Member member1 = new Member("900110-1002", "Sir Alex", "2015-10-4");
+            Member member2 = new Member("950109-9162", "Cristiano Rivaldo", "2010-12-10");
+            Member member3 = new Member("891020-9873", "Bill Cakes", "2012-09-02");
+            Member member4 = new Member("851224-2351", "Edward Billden", "2000-10-16");
 
             // Add books to the Author
             author1.BooksWritten.Add(book1);
@@ -67,10 +91,10 @@ namespace Library.Models {
             context.BookCopies.Add(book4Copy3);
 
             // Add members to the Dbset of members
-            //context.Members.Add(member1);
-            //context.Members.Add(member2);
-            //context.Members.Add(member3);
-            //context.Members.Add(member4);
+            context.Members.Add(member1);
+            context.Members.Add(member2);
+            context.Members.Add(member3);
+            context.Members.Add(member4);
 
             // Persist changes to the database
             context.SaveChanges();

@@ -11,14 +11,15 @@ namespace Library.Models
         public int Id { get; set; }
         public string SocialNumber { get; set; }
         public string Name { get; set; }
-        public DateTime MemberSince { get; set; }
+        //public DateTime MemberSince { get; set; }
+        public string MemberSince { get; set; }
         public List<BookCopy> LoanList { get; set; }
 
         public Member()
         {
             LoanList = new List<BookCopy>();
         }
-        public Member(string socialNumber, string name, DateTime memberSince)
+        public Member(string socialNumber, string name, string memberSince)
         {
             SocialNumber = socialNumber;
             Name = name;
