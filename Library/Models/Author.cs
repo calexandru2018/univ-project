@@ -28,7 +28,7 @@ namespace Library.Models
         /// </summary>
         public override string ToString()
         {
-            return String.Format($"[{this.Name}]");
+            return String.Format($"[{this.Id}] -- {this.Name}");
         }
     }
 }

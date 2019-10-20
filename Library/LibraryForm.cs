@@ -18,6 +18,8 @@ namespace Library
     {
 
         BookService bookService;
+        AuthorService authorService;
+        BookCopyService bookCopyService;
 
         public LibraryForm()
         {
@@ -30,10 +32,13 @@ namespace Library
             RepositoryFactory repFactory = new RepositoryFactory(context);
 
             this.bookService = new BookService(repFactory);
+            this.authorService = new AuthorService(repFactory);
+            this.bookCopyService = new BookCopyService(repFactory);
 
             ShowAllBooks(bookService.All());
+            ShowAllAuthors(authorService.All());
+            ShowAllBookCopies(bookCopyService.All());
         }
-        
 
         private void ShowAllBooks(IEnumerable<Book> books)
         {
@@ -41,6 +46,24 @@ namespace Library
             foreach (Book book in books)
             {
                 lbBooks.Items.Add(book);
+            }
+        }
+
+        private void ShowAllAuthors(IEnumerable<Author> authors)
+        {
+            lbAuthors.Items.Clear();
+            foreach(Author author in authors)
+            {
+                lbAuthors.Items.Add(author);
+            }
+        }
+
+        private void ShowAllBookCopies(IEnumerable<BookCopy> bookCopies)
+        {
+            lbBookCopies.Items.Clear();
+            foreach(BookCopy bookCopy in bookCopies)
+            {
+                lbBookCopies.Items.Add(bookCopy);
             }
         }
 
@@ -55,6 +78,10 @@ namespace Library
                 Debug.WriteLine(b.Title);
             }
         }
-        
+
+        private void ShowAllAuthorsForm_Click(object sender, EventArgs e)
+        {
+            //AllAuthorsForm
+        }
     }
 }

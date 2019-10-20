@@ -14,50 +14,25 @@ namespace Library.Models {
         protected override void Seed(LibraryContext context) {
             base.Seed(context);
 
-            Author author1 = new Author()
-            {
-                Name = "John Dewey"
-            };
+            Author author1 = new Author("John Dewey");
+            Author author2 = new Author("Isaac Newton");
+            Author author3 = new Author("Stephen Hawking");
+            Author author4 = new Author("Elon Musk");
 
-            Author author2 = new Author()
-            {
-                Name = "Isaac Newton"
-            };
+            Book book1 = new Book("1234566", "The Count of Monte Cristo", "My first book", author1);
+            Book book2 = new Book("09812314", "The Gravity", "Book about gravity", author2);
+            Book book3 = new Book("345231234", "The Deep Universe", "A book about the universe and black holes.", author3);
+            Book book4 = new Book("3453451", "Robots Or Aliens ?", "A book about AI.", author4);
 
-            Author author3 = new Author()
-            {
-                Name = "Stephen Hawking"
-            };
+            BookCopy book1Copy1 = new BookCopy(book1, 5);
+            BookCopy book1Copy2 = new BookCopy(book1, 1);
+            BookCopy book2Copy1 = new BookCopy(book2, 4);
+            BookCopy book2Copy2 = new BookCopy(book2, 9);
+            BookCopy book3Copy1 = new BookCopy(book3, 10);
+            BookCopy book4Copy1 = new BookCopy(book4, 2);
+            BookCopy book4Copy2 = new BookCopy(book4, 4);
+            BookCopy book4Copy3 = new BookCopy(book4, 6);
 
-            Author author4 = new Author()
-            {
-                Name = "Elon Musk"
-            };
-
-            Book book1 = new Book() {
-                ISBN = "1234566",
-                Title = "The Count of Monte Cristo",
-                Description = "My first book",
-                BookAuthor = author1
-            };
-            Book book2 = new Book() {
-                ISBN = "09812314",
-                Title = "The Gravity",
-                Description = "Book about gravity",
-                BookAuthor = author2
-            };
-            Book book3 = new Book() {
-                ISBN = "345231234",
-                Title = "The Deep Universe",
-                Description = "A book about the universe and black holes.",
-                BookAuthor = author3
-            };
-            Book book4 = new Book() {
-                ISBN = "3453451",
-                Title = "Robots Or Aliens ?",
-                Description = "A book about AI.",
-                BookAuthor = author4
-            };
 
             // Add books to the Author
             author1.BooksWritten.Add(book1);
@@ -76,6 +51,16 @@ namespace Library.Models {
             context.Books.Add(book2);
             context.Books.Add(book3);
             context.Books.Add(book4);
+
+            // Add the book copies to the Dbset of book copy.
+            context.BookCopies.Add(book1Copy1);
+            context.BookCopies.Add(book1Copy2);
+            context.BookCopies.Add(book2Copy1);
+            context.BookCopies.Add(book2Copy2);
+            context.BookCopies.Add(book3Copy1);
+            context.BookCopies.Add(book4Copy1);
+            context.BookCopies.Add(book4Copy2);
+            context.BookCopies.Add(book4Copy3);
 
             // Persist changes to the database
             context.SaveChanges();
