@@ -33,6 +33,10 @@ namespace Library.Models {
             BookCopy book4Copy2 = new BookCopy(book4, 4);
             BookCopy book4Copy3 = new BookCopy(book4, 6);
 
+            //Member member1 = new Member("900110-1002", "Sir Alex", new DateTime(2015, 10, 4));
+            //Member member2 = new Member("950109-9162", "Cristiano Rivaldo", new DateTime(2010, 12, 10));
+            //Member member3 = new Member("891020-9873", "Bill Cakes", new DateTime(2012, 09, 02));
+            //Member member4 = new Member("851224-2351", "Edward Billden", new DateTime(2000, 10, 16));
 
             // Add books to the Author
             author1.BooksWritten.Add(book1);
@@ -61,6 +65,12 @@ namespace Library.Models {
             context.BookCopies.Add(book4Copy1);
             context.BookCopies.Add(book4Copy2);
             context.BookCopies.Add(book4Copy3);
+
+            // Add members to the Dbset of members
+            //context.Members.Add(member1);
+            //context.Members.Add(member2);
+            //context.Members.Add(member3);
+            //context.Members.Add(member4);
 
             // Persist changes to the database
             context.SaveChanges();

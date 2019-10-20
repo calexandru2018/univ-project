@@ -30,6 +30,8 @@
             this.label2 = new System.Windows.Forms.Label();
             this.lbBookCopies = new System.Windows.Forms.ListBox();
             this.label3 = new System.Windows.Forms.Label();
+            this.lbMembers = new System.Windows.Forms.ListBox();
+            this.label4 = new System.Windows.Forms.Label();
             this.SuspendLayout();
             // 
             // lbBooks
@@ -94,15 +96,34 @@
             this.label3.TabIndex = 4;
             this.label3.Text = "Book Copies";
             // 
+            // lbMembers
+            // 
+            this.lbMembers.FormattingEnabled = true;
+            this.lbMembers.Location = new System.Drawing.Point(12, 394);
+            this.lbMembers.Name = "lbMembers";
+            this.lbMembers.Size = new System.Drawing.Size(309, 212);
+            this.lbMembers.TabIndex = 6;
+            // 
+            // label4
+            // 
+            this.label4.AutoSize = true;
+            this.label4.Location = new System.Drawing.Point(97, 366);
+            this.label4.Name = "label4";
+            this.label4.Size = new System.Drawing.Size(50, 13);
+            this.label4.TabIndex = 2;
+            this.label4.Text = "Members";
+            // 
             // LibraryForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(974, 622);
+            this.Controls.Add(this.lbMembers);
             this.Controls.Add(this.lbBookCopies);
             this.Controls.Add(this.label3);
             this.Controls.Add(this.label2);
             this.Controls.Add(this.lbAuthors);
+            this.Controls.Add(this.label4);
             this.Controls.Add(this.label1);
             this.Controls.Add(this.BTNChangeBook);
             this.Controls.Add(this.lbBooks);
@@ -122,6 +143,8 @@
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.ListBox lbBookCopies;
         private System.Windows.Forms.Label label3;
+        private System.Windows.Forms.ListBox lbMembers;
+        private System.Windows.Forms.Label label4;
     }
 }
 

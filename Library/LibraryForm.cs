@@ -20,6 +20,7 @@ namespace Library
         BookService bookService;
         AuthorService authorService;
         BookCopyService bookCopyService;
+        //MemberService memberService;
 
         public LibraryForm()
         {
@@ -34,10 +35,21 @@ namespace Library
             this.bookService = new BookService(repFactory);
             this.authorService = new AuthorService(repFactory);
             this.bookCopyService = new BookCopyService(repFactory);
+            //this.memberService = new MemberService(repFactory);
 
             ShowAllBooks(bookService.All());
             ShowAllAuthors(authorService.All());
             ShowAllBookCopies(bookCopyService.All());
+            //ShowAllMembers(memberService.All());
+        }
+
+        private void ShowAllMembers(IEnumerable<Member> members)
+        {
+            lbMembers.Items.Clear();
+            foreach (Member member in members)
+            {
+                lbMembers.Items.Add(member);
+            }
         }
 
         private void ShowAllBooks(IEnumerable<Book> books)
