@@ -5,6 +5,7 @@ using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
+using System.Diagnostics;
 using System.Drawing;
 using System.Linq;
 using System.Text;
@@ -48,8 +49,10 @@ namespace Library
             Book b = lbBooks.SelectedItem as Book;
             if (b != null)
             {
+                Debug.WriteLine("Should edit");
                 b.Title = "Yoyoma koko";
                 bookService.Edit(b);
+                Debug.WriteLine(b.Title);
             }
         }
         
