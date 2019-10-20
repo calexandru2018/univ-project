@@ -32,6 +32,8 @@
             this.label3 = new System.Windows.Forms.Label();
             this.lbMembers = new System.Windows.Forms.ListBox();
             this.label4 = new System.Windows.Forms.Label();
+            this.lbLoans = new System.Windows.Forms.ListBox();
+            this.Loans = new System.Windows.Forms.Label();
             this.SuspendLayout();
             // 
             // lbBooks
@@ -39,7 +41,7 @@
             this.lbBooks.FormattingEnabled = true;
             this.lbBooks.Location = new System.Drawing.Point(12, 106);
             this.lbBooks.Name = "lbBooks";
-            this.lbBooks.Size = new System.Drawing.Size(221, 238);
+            this.lbBooks.Size = new System.Drawing.Size(288, 238);
             this.lbBooks.TabIndex = 0;
             // 
             // BTNChangeBook
@@ -65,9 +67,9 @@
             // lbAuthors
             // 
             this.lbAuthors.FormattingEnabled = true;
-            this.lbAuthors.Location = new System.Drawing.Point(259, 106);
+            this.lbAuthors.Location = new System.Drawing.Point(345, 106);
             this.lbAuthors.Name = "lbAuthors";
-            this.lbAuthors.Size = new System.Drawing.Size(221, 238);
+            this.lbAuthors.Size = new System.Drawing.Size(301, 238);
             this.lbAuthors.TabIndex = 3;
             // 
             // label2
@@ -82,9 +84,9 @@
             // lbBookCopies
             // 
             this.lbBookCopies.FormattingEnabled = true;
-            this.lbBookCopies.Location = new System.Drawing.Point(515, 106);
+            this.lbBookCopies.Location = new System.Drawing.Point(698, 106);
             this.lbBookCopies.Name = "lbBookCopies";
-            this.lbBookCopies.Size = new System.Drawing.Size(221, 238);
+            this.lbBookCopies.Size = new System.Drawing.Size(264, 238);
             this.lbBookCopies.TabIndex = 5;
             // 
             // label3
@@ -101,7 +103,7 @@
             this.lbMembers.FormattingEnabled = true;
             this.lbMembers.Location = new System.Drawing.Point(12, 394);
             this.lbMembers.Name = "lbMembers";
-            this.lbMembers.Size = new System.Drawing.Size(309, 212);
+            this.lbMembers.Size = new System.Drawing.Size(408, 212);
             this.lbMembers.TabIndex = 6;
             // 
             // label4
@@ -113,16 +115,35 @@
             this.label4.TabIndex = 2;
             this.label4.Text = "Members";
             // 
+            // lbLoans
+            // 
+            this.lbLoans.FormattingEnabled = true;
+            this.lbLoans.Location = new System.Drawing.Point(426, 394);
+            this.lbLoans.Name = "lbLoans";
+            this.lbLoans.Size = new System.Drawing.Size(534, 212);
+            this.lbLoans.TabIndex = 6;
+            // 
+            // Loans
+            // 
+            this.Loans.AutoSize = true;
+            this.Loans.Location = new System.Drawing.Point(566, 366);
+            this.Loans.Name = "Loans";
+            this.Loans.Size = new System.Drawing.Size(36, 13);
+            this.Loans.TabIndex = 2;
+            this.Loans.Text = "Loans";
+            // 
             // LibraryForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(974, 622);
+            this.Controls.Add(this.lbLoans);
             this.Controls.Add(this.lbMembers);
             this.Controls.Add(this.lbBookCopies);
             this.Controls.Add(this.label3);
             this.Controls.Add(this.label2);
             this.Controls.Add(this.lbAuthors);
+            this.Controls.Add(this.Loans);
             this.Controls.Add(this.label4);
             this.Controls.Add(this.label1);
             this.Controls.Add(this.BTNChangeBook);
@@ -145,6 +166,8 @@
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.ListBox lbMembers;
         private System.Windows.Forms.Label label4;
+        private System.Windows.Forms.ListBox lbLoans;
+        private System.Windows.Forms.Label Loans;
     }
 }
 

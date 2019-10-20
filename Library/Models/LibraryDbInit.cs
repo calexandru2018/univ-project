@@ -14,11 +14,13 @@ namespace Library.Models {
         protected override void Seed(LibraryContext context) {
             base.Seed(context);
 
+            // Author instantiation
             Author author1 = new Author("John Dewey");
             Author author2 = new Author("Isaac Newton");
             Author author3 = new Author("Stephen Hawking");
             Author author4 = new Author("Elon Musk");
 
+            // Book instantiation
             Book book1 = new Book()
             {
                 ISBN = "1234566",
@@ -48,6 +50,7 @@ namespace Library.Models {
                 BookAuthor =  author4
             };
 
+            // Book Copy instantiation
             BookCopy book1Copy1 = new BookCopy(book1, 5);
             BookCopy book1Copy2 = new BookCopy(book1, 1);
             BookCopy book2Copy1 = new BookCopy(book2, 4);
@@ -57,10 +60,20 @@ namespace Library.Models {
             BookCopy book4Copy2 = new BookCopy(book4, 4);
             BookCopy book4Copy3 = new BookCopy(book4, 6);
 
+            // Member instantiation
             Member member1 = new Member("900110-1002", "Sir Alex", "2015-10-4");
             Member member2 = new Member("950109-9162", "Cristiano Rivaldo", "2010-12-10");
             Member member3 = new Member("891020-9873", "Bill Cakes", "2012-09-02");
             Member member4 = new Member("851224-2351", "Edward Billden", "2000-10-16");
+
+            // Loan instantiation
+            Loan loan1 = new Loan(book1Copy1, member1);
+            Loan loan2 = new Loan(book1Copy2, member2);
+            Loan loan3 = new Loan(book2Copy1, member3);
+            Loan loan4 = new Loan(book2Copy2, member3);
+            Loan loan5 = new Loan(book3Copy1, member3);
+            Loan loan6 = new Loan(book4Copy1, member4);
+            Loan loan7 = new Loan(book4Copy2, member4);
 
             // Add books to the Author
             author1.BooksWritten.Add(book1);
@@ -95,6 +108,15 @@ namespace Library.Models {
             context.Members.Add(member2);
             context.Members.Add(member3);
             context.Members.Add(member4);
+
+            // Add loans to the Dbset of loans
+            context.Loans.Add(loan1);
+            context.Loans.Add(loan2);
+            context.Loans.Add(loan3);
+            context.Loans.Add(loan4);
+            context.Loans.Add(loan5);
+            context.Loans.Add(loan6);
+            context.Loans.Add(loan7);
 
             // Persist changes to the database
             context.SaveChanges();

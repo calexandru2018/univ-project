@@ -27,6 +27,7 @@ namespace Library.Services
         public void Edit(BookCopy b)
         {
             bookCopyRepository.Edit(b);
+            // TODO: Raise the Updated event.
         }
     }
 }

@@ -27,6 +27,7 @@ namespace Library.Services
         public void Edit(Member m)
         {
             memberRepository.Edit(m);
+            // TODO: Raise the Updated event.
         }
     }
 }

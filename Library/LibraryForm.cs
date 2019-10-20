@@ -21,6 +21,7 @@ namespace Library
         AuthorService authorService;
         BookCopyService bookCopyService;
         MemberService memberService;
+        LoanService loanService;
 
         public LibraryForm()
         {
@@ -36,11 +37,22 @@ namespace Library
             this.authorService = new AuthorService(repFactory);
             this.bookCopyService = new BookCopyService(repFactory);
             this.memberService = new MemberService(repFactory);
+            this.loanService = new LoanService(repFactory);
 
             ShowAllBooks(bookService.All());
             ShowAllAuthors(authorService.All());
             ShowAllBookCopies(bookCopyService.All());
             ShowAllMembers(memberService.All());
+            ShowAllLoans(loanService.All());
+        }
+
+        private void ShowAllLoans(IEnumerable<Loan> loans)
+        {
+            lbLoans.Items.Clear();
+            foreach(Loan loan in loans)
+            {
+                lbLoans.Items.Add(loan);
+            }
         }
 
         private void ShowAllMembers(IEnumerable<Member> members)
