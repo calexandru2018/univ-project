@@ -27,7 +27,7 @@ namespace Library.Models
         /// </summary>
         public override string ToString()
         {
-            return String.Format($"[{this.Id}] -- {BookObject.Title} -- {this.Condition}");
+            return String.Format($"[{this.Id}] -- {BookObject.Title}; Condiditon: {this.Condition}");
         }
     }
 }
