@@ -7,13 +7,19 @@ using System.Threading.Tasks;
 
 namespace Library.Repositories
 {
-    public class MemberRepository
+    public class MemberRepository : IRepository<Member, int>
     {
         LibraryContext context;
 
         public MemberRepository(LibraryContext c)
         {
             this.context = c;
+        }
+
+        public void Add(Member item)
+        {
+            context.Members.Add(item);
+            context.SaveChanges();
         }
 
         public IEnumerable<Member> All()
@@ -29,6 +35,16 @@ namespace Library.Repositories
             // Then why do we still pass the Book object all the way to the repository? Because the service
             // layer doesn't know we use EF. If in the future we decide to switch EF to something else, 
             // we won't have to change the service layer.
+        }
+
+        public Member Find(int id)
+        {
+            throw new NotImplementedException();
+        }
+
+        public void Remove(Member item)
+        {
+            throw new NotImplementedException();
         }
     }
 }

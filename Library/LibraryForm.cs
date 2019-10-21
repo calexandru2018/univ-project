@@ -46,10 +46,24 @@ namespace Library
             ShowAllLoans(loanService.All());
         }
 
+        private void BTNChangeBook_Click(object sender, EventArgs e)
+        {
+            Book b = lbBooks.SelectedItem as Book;
+            if (b != null)
+            {
+                Debug.WriteLine("Should edit");
+                b.Title = "Yoyoma koko";
+                bookService.Edit(b);
+                Debug.WriteLine(b.Title);
+                ShowAllBooks(bookService.All());
+            }
+        }
+
+        // Show methods
         private void ShowAllLoans(IEnumerable<Loan> loans)
         {
             lbLoans.Items.Clear();
-            foreach(Loan loan in loans)
+            foreach (Loan loan in loans)
             {
                 lbLoans.Items.Add(loan);
             }
@@ -76,7 +90,7 @@ namespace Library
         private void ShowAllAuthors(IEnumerable<Author> authors)
         {
             lbAuthors.Items.Clear();
-            foreach(Author author in authors)
+            foreach (Author author in authors)
             {
                 lbAuthors.Items.Add(author);
             }
@@ -85,27 +99,44 @@ namespace Library
         private void ShowAllBookCopies(IEnumerable<BookCopy> bookCopies)
         {
             lbBookCopies.Items.Clear();
-            foreach(BookCopy bookCopy in bookCopies)
+            foreach (BookCopy bookCopy in bookCopies)
             {
                 lbBookCopies.Items.Add(bookCopy);
             }
         }
 
-        private void BTNChangeBook_Click(object sender, EventArgs e)
+        // Add new books and authors
+        private void addNewBook_Click_1(object sender, EventArgs e)
         {
-            Book b = lbBooks.SelectedItem as Book;
-            if (b != null)
+            Author newAuthor = new Author(addAuthorName.Text);
+            Book newBook = new Book()
             {
-                Debug.WriteLine("Should edit");
-                b.Title = "Yoyoma koko";
-                bookService.Edit(b);
-                Debug.WriteLine(b.Title);
-            }
+                ISBN = addBookISBN.Text,
+                Title = addBookTitle.Text,
+                Description = addBookDesc.Text,
+                BookAuthor = newAuthor
+            };
+
+            newAuthor.BooksWritten.Add(newBook);
+
+            authorService.Add(newAuthor);
+            bookService.Add(newBook);
+
+            ShowAllBooks(bookService.All());
+            ShowAllAuthors(authorService.All());
         }
 
-        private void ShowAllAuthorsForm_Click(object sender, EventArgs e)
+        private void addNewMember_Click(object sender, EventArgs e)
         {
-            //AllAuthorsForm
+            Member newMember = new Member()
+            {
+                SocialNumber = addMemberSocialNum.Text,
+                Name = addMemberName.Text,
+                MemberSince = DateTime.Now.ToString("dd/MM/yyyy")
+            };
+
+            memberService.Add(newMember);
+            ShowAllMembers(memberService.All());
         }
     }
 }

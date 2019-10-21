@@ -34,23 +34,23 @@
             this.label4 = new System.Windows.Forms.Label();
             this.lbLoans = new System.Windows.Forms.ListBox();
             this.Loans = new System.Windows.Forms.Label();
-            this.addNewBook = new System.Windows.Forms.Button();
-            this.addNewMember = new System.Windows.Forms.Button();
-            this.textBox1 = new System.Windows.Forms.TextBox();
-            this.textBox2 = new System.Windows.Forms.TextBox();
-            this.textBox3 = new System.Windows.Forms.TextBox();
-            this.textBox4 = new System.Windows.Forms.TextBox();
+            this.addBookISBN = new System.Windows.Forms.TextBox();
+            this.addBookTitle = new System.Windows.Forms.TextBox();
+            this.addBookDesc = new System.Windows.Forms.TextBox();
+            this.addAuthorName = new System.Windows.Forms.TextBox();
             this.label5 = new System.Windows.Forms.Label();
             this.label6 = new System.Windows.Forms.Label();
             this.label7 = new System.Windows.Forms.Label();
-            this.textBox5 = new System.Windows.Forms.TextBox();
-            this.textBox6 = new System.Windows.Forms.TextBox();
+            this.addMemberSocialNum = new System.Windows.Forms.TextBox();
+            this.addMemberName = new System.Windows.Forms.TextBox();
             this.label8 = new System.Windows.Forms.Label();
             this.label9 = new System.Windows.Forms.Label();
             this.label10 = new System.Windows.Forms.Label();
             this.label11 = new System.Windows.Forms.Label();
             this.label12 = new System.Windows.Forms.Label();
             this.label13 = new System.Windows.Forms.Label();
+            this.addNewBook = new System.Windows.Forms.Button();
+            this.addNewMember = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
             // lbBooks
@@ -149,55 +149,33 @@
             this.Loans.TabIndex = 2;
             this.Loans.Text = "Loans";
             // 
-            // addNewBook
+            // addBookISBN
             // 
-            this.addNewBook.Location = new System.Drawing.Point(95, 148);
-            this.addNewBook.Margin = new System.Windows.Forms.Padding(2);
-            this.addNewBook.Name = "addNewBook";
-            this.addNewBook.Size = new System.Drawing.Size(81, 59);
-            this.addNewBook.TabIndex = 1;
-            this.addNewBook.Text = "Add new Book";
-            this.addNewBook.UseVisualStyleBackColor = true;
-            this.addNewBook.Click += new System.EventHandler(this.BTNChangeBook_Click);
+            this.addBookISBN.Location = new System.Drawing.Point(85, 27);
+            this.addBookISBN.Name = "addBookISBN";
+            this.addBookISBN.Size = new System.Drawing.Size(100, 20);
+            this.addBookISBN.TabIndex = 7;
             // 
-            // addNewMember
+            // addBookTitle
             // 
-            this.addNewMember.Location = new System.Drawing.Point(311, 80);
-            this.addNewMember.Margin = new System.Windows.Forms.Padding(2);
-            this.addNewMember.Name = "addNewMember";
-            this.addNewMember.Size = new System.Drawing.Size(81, 59);
-            this.addNewMember.TabIndex = 1;
-            this.addNewMember.Text = "Add new Member";
-            this.addNewMember.UseVisualStyleBackColor = true;
-            this.addNewMember.Click += new System.EventHandler(this.BTNChangeBook_Click);
+            this.addBookTitle.Location = new System.Drawing.Point(85, 53);
+            this.addBookTitle.Name = "addBookTitle";
+            this.addBookTitle.Size = new System.Drawing.Size(100, 20);
+            this.addBookTitle.TabIndex = 7;
             // 
-            // textBox1
+            // addBookDesc
             // 
-            this.textBox1.Location = new System.Drawing.Point(85, 27);
-            this.textBox1.Name = "textBox1";
-            this.textBox1.Size = new System.Drawing.Size(100, 20);
-            this.textBox1.TabIndex = 7;
+            this.addBookDesc.Location = new System.Drawing.Point(85, 79);
+            this.addBookDesc.Name = "addBookDesc";
+            this.addBookDesc.Size = new System.Drawing.Size(100, 20);
+            this.addBookDesc.TabIndex = 7;
             // 
-            // textBox2
+            // addAuthorName
             // 
-            this.textBox2.Location = new System.Drawing.Point(85, 53);
-            this.textBox2.Name = "textBox2";
-            this.textBox2.Size = new System.Drawing.Size(100, 20);
-            this.textBox2.TabIndex = 7;
-            // 
-            // textBox3
-            // 
-            this.textBox3.Location = new System.Drawing.Point(85, 79);
-            this.textBox3.Name = "textBox3";
-            this.textBox3.Size = new System.Drawing.Size(100, 20);
-            this.textBox3.TabIndex = 7;
-            // 
-            // textBox4
-            // 
-            this.textBox4.Location = new System.Drawing.Point(85, 123);
-            this.textBox4.Name = "textBox4";
-            this.textBox4.Size = new System.Drawing.Size(100, 20);
-            this.textBox4.TabIndex = 7;
+            this.addAuthorName.Location = new System.Drawing.Point(85, 123);
+            this.addAuthorName.Name = "addAuthorName";
+            this.addAuthorName.Size = new System.Drawing.Size(100, 20);
+            this.addAuthorName.TabIndex = 7;
             // 
             // label5
             // 
@@ -226,19 +204,19 @@
             this.label7.TabIndex = 2;
             this.label7.Text = "Add new member";
             // 
-            // textBox5
+            // addMemberSocialNum
             // 
-            this.textBox5.Location = new System.Drawing.Point(297, 27);
-            this.textBox5.Name = "textBox5";
-            this.textBox5.Size = new System.Drawing.Size(100, 20);
-            this.textBox5.TabIndex = 7;
+            this.addMemberSocialNum.Location = new System.Drawing.Point(297, 27);
+            this.addMemberSocialNum.Name = "addMemberSocialNum";
+            this.addMemberSocialNum.Size = new System.Drawing.Size(100, 20);
+            this.addMemberSocialNum.TabIndex = 7;
             // 
-            // textBox6
+            // addMemberName
             // 
-            this.textBox6.Location = new System.Drawing.Point(297, 53);
-            this.textBox6.Name = "textBox6";
-            this.textBox6.Size = new System.Drawing.Size(100, 20);
-            this.textBox6.TabIndex = 7;
+            this.addMemberName.Location = new System.Drawing.Point(297, 53);
+            this.addMemberName.Name = "addMemberName";
+            this.addMemberName.Size = new System.Drawing.Size(100, 20);
+            this.addMemberName.TabIndex = 7;
             // 
             // label8
             // 
@@ -294,17 +272,39 @@
             this.label13.TabIndex = 2;
             this.label13.Text = "Name";
             // 
+            // addNewBook
+            // 
+            this.addNewBook.Location = new System.Drawing.Point(50, 171);
+            this.addNewBook.Name = "addNewBook";
+            this.addNewBook.Size = new System.Drawing.Size(113, 30);
+            this.addNewBook.TabIndex = 8;
+            this.addNewBook.Text = "Add new book";
+            this.addNewBook.UseVisualStyleBackColor = true;
+            this.addNewBook.Click += new System.EventHandler(this.addNewBook_Click_1);
+            // 
+            // addNewMember
+            // 
+            this.addNewMember.Location = new System.Drawing.Point(285, 82);
+            this.addNewMember.Name = "addNewMember";
+            this.addNewMember.Size = new System.Drawing.Size(107, 23);
+            this.addNewMember.TabIndex = 9;
+            this.addNewMember.Text = "Add new member";
+            this.addNewMember.UseVisualStyleBackColor = true;
+            this.addNewMember.Click += new System.EventHandler(this.addNewMember_Click);
+            // 
             // LibraryForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(974, 622);
-            this.Controls.Add(this.textBox4);
-            this.Controls.Add(this.textBox3);
-            this.Controls.Add(this.textBox6);
-            this.Controls.Add(this.textBox2);
-            this.Controls.Add(this.textBox5);
-            this.Controls.Add(this.textBox1);
+            this.Controls.Add(this.addNewMember);
+            this.Controls.Add(this.addNewBook);
+            this.Controls.Add(this.addAuthorName);
+            this.Controls.Add(this.addBookDesc);
+            this.Controls.Add(this.addMemberName);
+            this.Controls.Add(this.addBookTitle);
+            this.Controls.Add(this.addMemberSocialNum);
+            this.Controls.Add(this.addBookISBN);
             this.Controls.Add(this.lbLoans);
             this.Controls.Add(this.lbMembers);
             this.Controls.Add(this.lbBookCopies);
@@ -323,8 +323,6 @@
             this.Controls.Add(this.label6);
             this.Controls.Add(this.label5);
             this.Controls.Add(this.label1);
-            this.Controls.Add(this.addNewMember);
-            this.Controls.Add(this.addNewBook);
             this.Controls.Add(this.BTNChangeBook);
             this.Controls.Add(this.lbBooks);
             this.Name = "LibraryForm";
@@ -347,23 +345,23 @@
         private System.Windows.Forms.Label label4;
         private System.Windows.Forms.ListBox lbLoans;
         private System.Windows.Forms.Label Loans;
-        private System.Windows.Forms.Button addNewBook;
-        private System.Windows.Forms.Button addNewMember;
-        private System.Windows.Forms.TextBox textBox1;
-        private System.Windows.Forms.TextBox textBox2;
-        private System.Windows.Forms.TextBox textBox3;
-        private System.Windows.Forms.TextBox textBox4;
+        private System.Windows.Forms.TextBox addBookISBN;
+        private System.Windows.Forms.TextBox addBookTitle;
+        private System.Windows.Forms.TextBox addBookDesc;
+        private System.Windows.Forms.TextBox addAuthorName;
         private System.Windows.Forms.Label label5;
         private System.Windows.Forms.Label label6;
         private System.Windows.Forms.Label label7;
-        private System.Windows.Forms.TextBox textBox5;
-        private System.Windows.Forms.TextBox textBox6;
+        private System.Windows.Forms.TextBox addMemberSocialNum;
+        private System.Windows.Forms.TextBox addMemberName;
         private System.Windows.Forms.Label label8;
         private System.Windows.Forms.Label label9;
         private System.Windows.Forms.Label label10;
         private System.Windows.Forms.Label label11;
         private System.Windows.Forms.Label label12;
         private System.Windows.Forms.Label label13;
+        private System.Windows.Forms.Button addNewBook;
+        private System.Windows.Forms.Button addNewMember;
     }
 }
 

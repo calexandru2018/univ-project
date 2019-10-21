@@ -8,13 +8,20 @@ using Library.Models;
 
 namespace Library.Services
 {
-    class AuthorService
+    class AuthorService : IService
     {
         AuthorRepository authorRepository;
 
         public AuthorService(RepositoryFactory rFactory)
         {
             this.authorRepository = rFactory.CreateAuthorRepository();
+        }
+
+        public event EventHandler Updated;
+
+        public void Add(Author author)
+        {
+            authorRepository.Add(author);
         }
 
         public IEnumerable<Author> All()

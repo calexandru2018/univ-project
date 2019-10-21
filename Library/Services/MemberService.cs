@@ -8,13 +8,20 @@ using Library.Models;
 
 namespace Library.Services
 {
-    class MemberService
+    class MemberService : IService
     {
         MemberRepository memberRepository;
 
         public MemberService(RepositoryFactory rFactory)
         {
             this.memberRepository = rFactory.CreateMemberRepository();
+        }
+
+        public event EventHandler Updated;
+
+        public void Add(Member member)
+        {
+            memberRepository.Add(member);
         }
 
         public IEnumerable<Member> All()
