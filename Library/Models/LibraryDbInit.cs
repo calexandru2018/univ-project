@@ -67,19 +67,22 @@ namespace Library.Models {
             Member member4 = new Member("851224-2351", "Edward Billden", DateTime.Parse("2000-10-16"));
 
             // Loan instantiation
-            Loan loan1 = new Loan(book1Copy1, member1);
-            Loan loan2 = new Loan(book1Copy2, member2);
-            Loan loan3 = new Loan(book2Copy1, member3);
-            Loan loan4 = new Loan(book2Copy2, member3);
-            Loan loan5 = new Loan(book3Copy1, member3);
-            Loan loan6 = new Loan(book4Copy1, member4);
-            Loan loan7 = new Loan(book4Copy2, member4);
+            Loan loan1 = new Loan(book1Copy1, member1, DateTime.Today.AddDays(-4));
+            Loan loan2 = new Loan(book1Copy2, member2, DateTime.Today.AddDays(15));
+            Loan loan3 = new Loan(book2Copy1, member3, DateTime.Today.AddDays(-16));
+            Loan loan4 = new Loan(book2Copy2, member3, DateTime.Today.AddDays(12));
+            Loan loan5 = new Loan(book3Copy1, member3, DateTime.Today.AddDays(-25));
+            Loan loan6 = new Loan(book4Copy1, member4, DateTime.Today.AddDays(2));
+            Loan loan7 = new Loan(book4Copy2, member4, DateTime.Today.AddDays(-10));
 
-            // Add books to the Author
-            //author1.BooksWritten.Add(book1);
-            //author2.BooksWritten.Add(book2);
-            //author3.BooksWritten.Add(book3);
-            //author4.BooksWritten.Add(book4);
+            // Save loans to members
+            member1.LoanList.Add(loan1);
+            member2.LoanList.Add(loan2);
+            member3.LoanList.Add(loan3);
+            member3.LoanList.Add(loan4);
+            member3.LoanList.Add(loan5);
+            member4.LoanList.Add(loan6);
+            member4.LoanList.Add(loan7);
 
             // Add the author to the DbSet of authors.
             context.Authors.Add(author1);

@@ -112,6 +112,7 @@ namespace Library
             {
                 lbAvailCopies.Items.Add(bookCopy);
             }
+            Debug.WriteLine("Rendering show all available copies");
         }
 
         // Add new books and authors
@@ -194,7 +195,14 @@ namespace Library
             {
                 BookCopy bookCopy = lbAvailCopies.SelectedItem as BookCopy;
                 Member member = lbMembers.SelectedItem as Member;
-                Loan newbookLoan = new Loan(bookCopy, member);
+                //Loan newbookLoan = new Loan(bookCopy, member);
+                Random rnd = new Random();
+                int daysDiff = rnd.Next(-20, 30);
+                Loan newbookLoan = new Loan(bookCopy, member, DateTime.Today.AddDays(daysDiff));
+
+                member.LoanList.Add(newbookLoan);
+                memberService.Edit(member);
+
                 loanService.Add(newbookLoan);
                 ShowAllLoans(loanService.All());
                 ShowAvailableCopies(bookCopyService.AllAvailable());
@@ -218,7 +226,7 @@ namespace Library
             }
             catch
             {
-
+                MessageBox.Show("You need to select an author");
             }
         }
 
@@ -227,10 +235,10 @@ namespace Library
             try
             {
                 Member selectedMember = lbMembers.SelectedItem as Member;
-                lbUserHistory.Items.Clear();
+                removeMember.Items.Clear();
                 foreach (Loan loan in loanService.AllMemberLoans(selectedMember))
                 {
-                    lbUserHistory.Items.Add(loan);
+                    removeMember.Items.Add(loan);
                 }
             }
             catch
@@ -238,6 +246,51 @@ namespace Library
                 MessageBox.Show("Select a member to show");
             }
            
+        }
+
+        private void button1_Click(object sender, EventArgs e)
+        {
+            try
+            {
+
+                Loan selectedLoan = lbLoans.SelectedItem as Loan;
+                DateTime returnDate = datePicker.Value.Date;
+
+                selectedLoan.ReturnLoanTimestamp = returnDate;
+                int dayDiff = (int)(returnDate - selectedLoan.DueDate).TotalDays;
+                int fee = dayDiff * 10;
+
+                var message = fee <= 0 ? $"Thank {selectedLoan.member.Name} for the return." : $"The fee for {selectedLoan.member.Name} with {dayDiff} day(s) is {fee}:-";
+
+                loanService.Remove(selectedLoan);
+                MessageBox.Show(message);
+                ShowAvailableCopies(bookCopyService.AllAvailable());
+                ShowAllLoans(loanService.All());
+            }
+            catch
+            {
+                MessageBox.Show("Something went wrong");
+            }
+        }
+
+        private void btnRemoveMember_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                Member selectedMember = lbMembers.SelectedItem as Member;
+                var confirm = MessageBox.Show($"Do you really want to remove {selectedMember.Name}","Remove member from System", MessageBoxButtons.YesNo);
+                if(confirm == DialogResult.Yes)
+                {
+                    memberService.Remove(selectedMember);
+                    ShowAllMembers(memberService.All());
+                    ShowAllLoans(loanService.All());
+                    ShowAvailableCopies(bookCopyService.AllAvailable());
+                }
+            }
+            catch
+            {
+                MessageBox.Show("unable to remove user");
+            }
         }
     }
 }

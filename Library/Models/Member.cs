@@ -12,18 +12,18 @@ namespace Library.Models
         public string SocialNumber { get; set; }
         public string Name { get; set; }
         public DateTime MemberSince { get; set; }
-        public List<BookCopy> LoanList { get; set; }
+        public List<Loan> LoanList { get; set; }
 
         public Member()
         {
-            LoanList = new List<BookCopy>();
+            LoanList = new List<Loan>();
         }
         public Member(string socialNumber, string name, DateTime memberSince)
         {
             SocialNumber = socialNumber;
             Name = name;
             MemberSince = memberSince;
-            LoanList = new List<BookCopy>();
+            LoanList = new List<Loan>();
         }
 
         /// <summary>

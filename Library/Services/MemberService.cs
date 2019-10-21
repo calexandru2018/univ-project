@@ -36,5 +36,10 @@ namespace Library.Services
             memberRepository.Edit(m);
             // TODO: Raise the Updated event.
         }
+
+        public void Remove(Member m)
+        {
+            memberRepository.Remove(m);
+        }
     }
 }

@@ -22,12 +22,14 @@ namespace Library.Models
            
         }
 
-        public Loan(BookCopy bookCopy, Member member)
+        public Loan(BookCopy bookCopy, Member member, DateTime startloantime)
         {
             this.bookCopy = bookCopy;
             this.member = member;
-            StartLoanTimestamp = DateTime.Now;
+            //StartLoanTimestamp = DateTime.Today.Date;
+            StartLoanTimestamp = startloantime;
             DueDate = StartLoanTimestamp.AddDays(15);
+            //ReturnLoanTimestamp = returnLoan;
         }
 
         /// <summary>
@@ -35,7 +37,17 @@ namespace Library.Models
         /// </summary>
         public override string ToString()
         {
-            return String.Format($"[{this.Id}] {this.StartLoanTimestamp} - {this.DueDate}; ReturnedDate: [{this.ReturnLoanTimestamp}]; BookCopy[{this.BookCopyId}];MemberId {this.MemberId}");
+            string message = "In loan";
+            if (this.DueDate < DateTime.Today && !ReturnLoanTimestamp.HasValue)
+            {
+                message = "Overdue";
+            }
+            else if(ReturnLoanTimestamp.HasValue)
+            {
+                message = "Returned";
+            }
+            return String.Format($"[{this.Id}] {this.StartLoanTimestamp} - Due:{this.DueDate}; ReturnedDate: [{this.ReturnLoanTimestamp}]; BookCopy: {this.bookCopy.BookObject.Title};Member {this.member.Name}; Status: {message}");
+            //return String.Format($"[{this.Id}] Start{this.StartLoanTimestamp} - Due:{this.DueDate}; ReturnedDate: [{this.ReturnLoanTimestamp}]; Status: {message}");
         }
     }
 }

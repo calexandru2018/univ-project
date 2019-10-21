@@ -44,7 +44,8 @@ namespace Library.Repositories
 
         public void Remove(Member item)
         {
-            throw new NotImplementedException();
+            context.Members.Remove(item);
+            context.SaveChanges();
         }
     }
 }

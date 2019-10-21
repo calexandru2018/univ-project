@@ -39,5 +39,10 @@ namespace Library.Services
             loanRepository.Edit(l);
             // TODO: Raise the Updated event.
         }
+
+        public void Remove(Loan item)
+        {
+            loanRepository.Remove(item);
+        }
     }
 }

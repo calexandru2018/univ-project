@@ -26,19 +26,20 @@ namespace Library.Repositories
             return context.Loans;
         }
 
-        public void Edit(Loan l)
-        {
-            context.SaveChanges();
-        }
-
         public Loan Find(int id)
         {
             throw new NotImplementedException();
         }
 
+        public void Edit(Loan l)
+        {
+            context.SaveChanges();
+        }
+
         public void Remove(Loan item)
         {
-            throw new NotImplementedException();
+            context.Loans.Remove(item);
+            context.SaveChanges();
         }
     }
 }

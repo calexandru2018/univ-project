@@ -60,9 +60,11 @@
             this.lbShowFilteredContent = new System.Windows.Forms.ListBox();
             this.lbAvailCopies = new System.Windows.Forms.ListBox();
             this.label15 = new System.Windows.Forms.Label();
-            this.lbUserHistory = new System.Windows.Forms.ListBox();
+            this.removeMember = new System.Windows.Forms.ListBox();
             this.showUserHistory = new System.Windows.Forms.Button();
-            this.button1 = new System.Windows.Forms.Button();
+            this.returnLoad = new System.Windows.Forms.Button();
+            this.datePicker = new System.Windows.Forms.DateTimePicker();
+            this.btnRemoveMember = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
             // lbBooks
@@ -113,6 +115,7 @@
             // lbBookCopies
             // 
             this.lbBookCopies.FormattingEnabled = true;
+            this.lbBookCopies.HorizontalScrollbar = true;
             this.lbBookCopies.Location = new System.Drawing.Point(503, 30);
             this.lbBookCopies.Name = "lbBookCopies";
             this.lbBookCopies.Size = new System.Drawing.Size(251, 238);
@@ -132,7 +135,7 @@
             this.lbMembers.FormattingEnabled = true;
             this.lbMembers.Location = new System.Drawing.Point(12, 394);
             this.lbMembers.Name = "lbMembers";
-            this.lbMembers.Size = new System.Drawing.Size(408, 212);
+            this.lbMembers.Size = new System.Drawing.Size(312, 212);
             this.lbMembers.TabIndex = 6;
             // 
             // label4
@@ -147,9 +150,10 @@
             // lbLoans
             // 
             this.lbLoans.FormattingEnabled = true;
-            this.lbLoans.Location = new System.Drawing.Point(426, 394);
+            this.lbLoans.HorizontalScrollbar = true;
+            this.lbLoans.Location = new System.Drawing.Point(330, 394);
             this.lbLoans.Name = "lbLoans";
-            this.lbLoans.Size = new System.Drawing.Size(564, 212);
+            this.lbLoans.Size = new System.Drawing.Size(660, 212);
             this.lbLoans.TabIndex = 6;
             // 
             // Loans
@@ -373,6 +377,7 @@
             // lbAvailCopies
             // 
             this.lbAvailCopies.FormattingEnabled = true;
+            this.lbAvailCopies.HorizontalScrollbar = true;
             this.lbAvailCopies.Location = new System.Drawing.Point(769, 30);
             this.lbAvailCopies.Name = "lbAvailCopies";
             this.lbAvailCopies.Size = new System.Drawing.Size(221, 238);
@@ -387,13 +392,14 @@
             this.label15.TabIndex = 4;
             this.label15.Text = "Available Copies";
             // 
-            // lbUserHistory
+            // removeMember
             // 
-            this.lbUserHistory.FormattingEnabled = true;
-            this.lbUserHistory.Location = new System.Drawing.Point(607, 664);
-            this.lbUserHistory.Name = "lbUserHistory";
-            this.lbUserHistory.Size = new System.Drawing.Size(383, 160);
-            this.lbUserHistory.TabIndex = 17;
+            this.removeMember.FormattingEnabled = true;
+            this.removeMember.HorizontalScrollbar = true;
+            this.removeMember.Location = new System.Drawing.Point(607, 664);
+            this.removeMember.Name = "removeMember";
+            this.removeMember.Size = new System.Drawing.Size(383, 160);
+            this.removeMember.TabIndex = 17;
             // 
             // showUserHistory
             // 
@@ -405,23 +411,43 @@
             this.showUserHistory.UseVisualStyleBackColor = true;
             this.showUserHistory.Click += new System.EventHandler(this.showUserHistory_Click);
             // 
-            // button1
+            // returnLoad
             // 
-            this.button1.Location = new System.Drawing.Point(866, 619);
-            this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(124, 23);
-            this.button1.TabIndex = 19;
-            this.button1.Text = "Return Loaned Book";
-            this.button1.UseVisualStyleBackColor = true;
+            this.returnLoad.Location = new System.Drawing.Point(866, 619);
+            this.returnLoad.Name = "returnLoad";
+            this.returnLoad.Size = new System.Drawing.Size(124, 23);
+            this.returnLoad.TabIndex = 19;
+            this.returnLoad.Text = "Return Loaned Book";
+            this.returnLoad.UseVisualStyleBackColor = true;
+            this.returnLoad.Click += new System.EventHandler(this.button1_Click);
+            // 
+            // datePicker
+            // 
+            this.datePicker.Location = new System.Drawing.Point(660, 622);
+            this.datePicker.Name = "datePicker";
+            this.datePicker.Size = new System.Drawing.Size(200, 20);
+            this.datePicker.TabIndex = 20;
+            // 
+            // btnRemoveMember
+            // 
+            this.btnRemoveMember.Location = new System.Drawing.Point(88, 761);
+            this.btnRemoveMember.Name = "btnRemoveMember";
+            this.btnRemoveMember.Size = new System.Drawing.Size(107, 23);
+            this.btnRemoveMember.TabIndex = 21;
+            this.btnRemoveMember.Text = "Remove Member";
+            this.btnRemoveMember.UseVisualStyleBackColor = true;
+            this.btnRemoveMember.Click += new System.EventHandler(this.btnRemoveMember_Click);
             // 
             // LibraryForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1005, 844);
-            this.Controls.Add(this.button1);
+            this.Controls.Add(this.btnRemoveMember);
+            this.Controls.Add(this.datePicker);
+            this.Controls.Add(this.returnLoad);
             this.Controls.Add(this.showUserHistory);
-            this.Controls.Add(this.lbUserHistory);
+            this.Controls.Add(this.removeMember);
             this.Controls.Add(this.lbAvailCopies);
             this.Controls.Add(this.lbShowFilteredContent);
             this.Controls.Add(this.listByAuthor);
@@ -505,9 +531,11 @@
         private System.Windows.Forms.ListBox lbShowFilteredContent;
         private System.Windows.Forms.ListBox lbAvailCopies;
         private System.Windows.Forms.Label label15;
-        private System.Windows.Forms.ListBox lbUserHistory;
+        private System.Windows.Forms.ListBox removeMember;
         private System.Windows.Forms.Button showUserHistory;
-        private System.Windows.Forms.Button button1;
+        private System.Windows.Forms.Button returnLoad;
+        private System.Windows.Forms.DateTimePicker datePicker;
+        private System.Windows.Forms.Button btnRemoveMember;
     }
 }
 

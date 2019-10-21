@@ -38,5 +38,10 @@ namespace Library.Services
             bookCopyRepository.Edit(b);
             // TODO: Raise the Updated event.
         }
+
+        public void Remove(BookCopy item)
+        {
+            throw new NotImplementedException();
+        }
     }
 }
