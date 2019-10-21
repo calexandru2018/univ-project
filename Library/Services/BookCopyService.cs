@@ -17,6 +17,15 @@ namespace Library.Services
             this.bookCopyRepository = rFactory.CreateBookCopyRepository();
         } 
 
+        public void Add(BookCopy bookCopy)
+        {
+            bookCopyRepository.Add(bookCopy);
+        }
+
+        public IEnumerable<BookCopy> AllAvailable()
+        {
+            return bookCopyRepository.AllAvailable();
+        }
         public IEnumerable<BookCopy> All()
         {
             return bookCopyRepository.All();

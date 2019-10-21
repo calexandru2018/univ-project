@@ -9,13 +9,13 @@ namespace Library.Models
     public class Loan
     {
         public int Id { get; set; }
-        //public DateTime StartLoanTime { get; set; }
-        public string StartLoanTimestamp { get; set; }
-        //public DateTime DueDate { get; set; }
-        public string DueDate { get; set; }
+        public DateTime StartLoanTimestamp { get; set; }
+        public DateTime DueDate { get; set; }
         public DateTime? ReturnLoanTimestamp { get; set; }
-        public BookCopy LoanCopy { get; set; }
-        public Member LibMember { get; set; }
+        public int BookCopyId { get; set;}
+        public virtual BookCopy bookCopy { get; set; }
+        public int MemberId { get; set; }
+        public virtual Member member { get; set; }
 
         public Loan()
         {
@@ -24,10 +24,10 @@ namespace Library.Models
 
         public Loan(BookCopy bookCopy, Member member)
         {
-            LoanCopy = bookCopy;
-            LibMember = member;
-            StartLoanTimestamp = "StartTimeStamp";
-            DueDate = "+15days";
+            this.bookCopy = bookCopy;
+            this.member = member;
+            StartLoanTimestamp = DateTime.Now;
+            DueDate = StartLoanTimestamp.AddDays(15);
         }
 
         /// <summary>
@@ -35,7 +35,7 @@ namespace Library.Models
         /// </summary>
         public override string ToString()
         {
-            return String.Format($"[{this.Id}] {StartLoanTimestamp} - {DueDate}; Returned: [{this.ReturnLoanTimestamp}]; Book: {LoanCopy.BookObject.Title}; Member: {LibMember.Name}");
+            return String.Format($"[{this.Id}] {this.StartLoanTimestamp} - {this.DueDate}; ReturnedDate: [{this.ReturnLoanTimestamp}]; BookCopy[{this.BookCopyId}];MemberId {this.MemberId}");
         }
     }
 }

@@ -1,13 +1,14 @@
 ﻿using Library.Models;
 using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
 namespace Library.Repositories
 {
-    public class BookCopyRepository
+    public class BookCopyRepository : IRepository<BookCopy, int>
     {
         LibraryContext context;
 
@@ -16,9 +17,32 @@ namespace Library.Repositories
             this.context = c;
         }
 
+        public void Add(BookCopy item)
+        {
+            context.BookCopies.Add(item);
+            context.SaveChanges();
+        }
+
         public IEnumerable<BookCopy> All()
         {
             return context.BookCopies;
+        }
+
+        public IEnumerable<BookCopy> AllAvailable()
+        {
+            var loans = context.Loans;
+            var bookCopies = context.BookCopies;
+            return context.BookCopies.Where(bookCopy => !loans.Any(loan => loan.BookCopyId == bookCopy.Id));
+        }
+        
+        public BookCopy Find(int id)
+        {
+            throw new NotImplementedException();
+        }
+
+        public void Remove(BookCopy item)
+        {
+            throw new NotImplementedException();
         }
 
         public void Edit(BookCopy a)
@@ -30,5 +54,6 @@ namespace Library.Repositories
             // layer doesn't know we use EF. If in the future we decide to switch EF to something else, 
             // we won't have to change the service layer.
         }
+
     }
 }

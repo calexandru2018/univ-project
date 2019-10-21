@@ -61,10 +61,10 @@ namespace Library.Models {
             BookCopy book4Copy3 = new BookCopy(book4, 6);
 
             // Member instantiation
-            Member member1 = new Member("900110-1002", "Sir Alex", "2015-10-4");
-            Member member2 = new Member("950109-9162", "Cristiano Rivaldo", "2010-12-10");
-            Member member3 = new Member("891020-9873", "Bill Cakes", "2012-09-02");
-            Member member4 = new Member("851224-2351", "Edward Billden", "2000-10-16");
+            Member member1 = new Member("900110-1002", "Sir Alex", DateTime.Parse("2015-10-4"));
+            Member member2 = new Member("950109-9162", "Cristiano Rivaldo", DateTime.Parse("2010-12-10"));
+            Member member3 = new Member("891020-9873", "Bill Cakes", DateTime.Parse("2012-09-02"));
+            Member member4 = new Member("851224-2351", "Edward Billden", DateTime.Parse("2000-10-16"));
 
             // Loan instantiation
             Loan loan1 = new Loan(book1Copy1, member1);
@@ -76,10 +76,10 @@ namespace Library.Models {
             Loan loan7 = new Loan(book4Copy2, member4);
 
             // Add books to the Author
-            author1.BooksWritten.Add(book1);
-            author2.BooksWritten.Add(book2);
-            author3.BooksWritten.Add(book3);
-            author4.BooksWritten.Add(book4);
+            //author1.BooksWritten.Add(book1);
+            //author2.BooksWritten.Add(book2);
+            //author3.BooksWritten.Add(book3);
+            //author4.BooksWritten.Add(book4);
 
             // Add the author to the DbSet of authors.
             context.Authors.Add(author1);

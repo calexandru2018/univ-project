@@ -9,7 +9,8 @@ namespace Library.Models
     public class BookCopy
     {
         public int Id { get; set; }
-        public Book BookObject { get; set; }
+        public virtual int BookId { get; set; }
+        public virtual Book BookObject { get; set; }
         public int Condition{ get; set; }
 
         public BookCopy()
@@ -27,7 +28,7 @@ namespace Library.Models
         /// </summary>
         public override string ToString()
         {
-            return String.Format($"[{this.Id}] -- {BookObject.Title}; Condiditon: {this.Condition}");
+            return String.Format($"[{this.Id}] -- {BookObject.Title}; Condiditon: {this.Condition};");
         }
     }
 }

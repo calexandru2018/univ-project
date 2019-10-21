@@ -44,17 +44,17 @@ namespace Library
             ShowAllBookCopies(bookCopyService.All());
             ShowAllMembers(memberService.All());
             ShowAllLoans(loanService.All());
+            ShowAvailableCopies(bookCopyService.AllAvailable());
         }
+
 
         private void BTNChangeBook_Click(object sender, EventArgs e)
         {
             Book b = lbBooks.SelectedItem as Book;
             if (b != null)
             {
-                Debug.WriteLine("Should edit");
                 b.Title = "Yoyoma koko";
                 bookService.Edit(b);
-                Debug.WriteLine(b.Title);
                 ShowAllBooks(bookService.All());
             }
         }
@@ -105,21 +105,41 @@ namespace Library
             }
         }
 
+        private void ShowAvailableCopies(IEnumerable<BookCopy> bookCopies)
+        {
+            lbAvailCopies.Items.Clear();
+            foreach (BookCopy bookCopy in bookCopies)
+            {
+                lbAvailCopies.Items.Add(bookCopy);
+            }
+        }
+
         // Add new books and authors
         private void addNewBook_Click_1(object sender, EventArgs e)
         {
-            Author newAuthor = new Author(addAuthorName.Text);
+            Author addNewAuthor;
+            if (newAuthor.Checked == false)
+            {
+                addNewAuthor = lbAuthors.SelectedItem as Author;
+                Debug.WriteLine(addNewAuthor);
+            }
+            else
+            {
+                addNewAuthor = new Author(addAuthorName.Text);
+                authorService.Add(addNewAuthor);
+            }
+           
             Book newBook = new Book()
             {
                 ISBN = addBookISBN.Text,
                 Title = addBookTitle.Text,
                 Description = addBookDesc.Text,
-                BookAuthor = newAuthor
+                BookAuthor = addNewAuthor
             };
 
-            newAuthor.BooksWritten.Add(newBook);
+            //addNewAuthor.BooksWritten.Add(newBook);
 
-            authorService.Add(newAuthor);
+            
             bookService.Add(newBook);
 
             ShowAllBooks(bookService.All());
@@ -132,11 +152,92 @@ namespace Library
             {
                 SocialNumber = addMemberSocialNum.Text,
                 Name = addMemberName.Text,
-                MemberSince = DateTime.Now.ToString("dd/MM/yyyy")
+                MemberSince = DateTime.Now
             };
 
             memberService.Add(newMember);
+
             ShowAllMembers(memberService.All());
+        }
+
+        private void newAuthor_CheckedChanged(object sender, EventArgs e)
+        {
+            if (newAuthor.Checked)
+            {
+                addAuthorName.Enabled = true;
+            }
+            else
+            {
+                addAuthorName.Enabled = false;
+            }
+        }
+
+        private void addNewBookCopy_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                Book b = lbBooks.SelectedItem as Book;
+                BookCopy bookCopy = new BookCopy(b, Convert.ToInt32(bookCopyCondition.Text));
+                bookCopyService.Add(bookCopy);
+                ShowAllBookCopies(bookCopyService.All());
+                ShowAvailableCopies(bookCopyService.AllAvailable());
+            }
+            catch
+            {
+                MessageBox.Show("Need to choose a book");
+            }
+        }
+
+        private void loanBook_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                BookCopy bookCopy = lbAvailCopies.SelectedItem as BookCopy;
+                Member member = lbMembers.SelectedItem as Member;
+                Loan newbookLoan = new Loan(bookCopy, member);
+                loanService.Add(newbookLoan);
+                ShowAllLoans(loanService.All());
+                ShowAvailableCopies(bookCopyService.AllAvailable());
+            }
+            catch
+            {
+                MessageBox.Show("Unable to load book");
+            }
+        }
+
+        private void listByAuthor_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                Author searchAfter = lbAuthors.SelectedItem as Author;
+                lbShowFilteredContent.Items.Clear();
+                foreach (Book book in bookService.GetAllByAuthor(searchAfter))
+                {
+                    lbShowFilteredContent.Items.Add(book);
+                }
+            }
+            catch
+            {
+
+            }
+        }
+
+        private void showUserHistory_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                Member selectedMember = lbMembers.SelectedItem as Member;
+                lbUserHistory.Items.Clear();
+                foreach (Loan loan in loanService.AllMemberLoans(selectedMember))
+                {
+                    lbUserHistory.Items.Add(loan);
+                }
+            }
+            catch
+            {
+                MessageBox.Show("Select a member to show");
+            }
+           
         }
     }
 }

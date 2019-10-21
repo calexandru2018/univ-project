@@ -17,6 +17,16 @@ namespace Library.Services
             this.loanRepository = rFactory.CreateLoanRepository();
         }
 
+        public void Add(Loan loan)
+        {
+            loanRepository.Add(loan);
+        }
+
+        public IEnumerable<Loan> AllMemberLoans(Member member)
+        {
+            return loanRepository.All().Where(loan => loan.MemberId == member.Id);
+        }
+
         public IEnumerable<Loan> All()
         {
             return loanRepository.All();

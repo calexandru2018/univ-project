@@ -33,6 +33,10 @@ namespace Library.Services
             return bookRepository.All();
         }
 
+        public IEnumerable<Book> GetAllByAuthor(Author author)
+        {
+            return bookRepository.All().Where(b => b.BookAuthorId == author.Id);
+        } 
 
         public IEnumerable<Book> GetAllThatContainsInTitle(string a)
         {
@@ -46,6 +50,7 @@ namespace Library.Services
         public void Edit(Book book)
         {
             bookRepository.Edit(book);
+            //Updated.Invoke(this, e);
             // TODO: Raise the Updated event.
         }
     }
