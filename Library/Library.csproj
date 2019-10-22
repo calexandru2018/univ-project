@@ -57,6 +57,18 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="CreateNewLoan.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="CreateNewLoan.Designer.cs">
+      <DependentUpon>CreateNewLoan.cs</DependentUpon>
+    </Compile>
+    <Compile Include="CreateNewMember.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="CreateNewMember.Designer.cs">
+      <DependentUpon>CreateNewMember.cs</DependentUpon>
+    </Compile>
     <Compile Include="LibraryForm.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -91,6 +103,12 @@
     <Compile Include="Services\IService.cs" />
     <Compile Include="Services\LoanService.cs" />
     <Compile Include="Services\MemberService.cs" />
+    <EmbeddedResource Include="CreateNewLoan.resx">
+      <DependentUpon>CreateNewLoan.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="CreateNewMember.resx">
+      <DependentUpon>CreateNewMember.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="LibraryForm.resx">
       <DependentUpon>LibraryForm.cs</DependentUpon>
     </EmbeddedResource>

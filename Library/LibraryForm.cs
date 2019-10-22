@@ -308,7 +308,7 @@ namespace Library
 
         private void button1_Click_1(object sender, EventArgs e)
         {
-            MemberList formMemberList = new MemberList(memberService);
+            MemberList formMemberList = new MemberList(memberService, loanService, bookCopyService);
             formMemberList.ShowDialog();
         }
 

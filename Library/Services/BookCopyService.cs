@@ -8,7 +8,7 @@ using Library.Models;
 
 namespace Library.Services
 {
-    class BookCopyService : IService
+    public class BookCopyService : IService
     {
         BookCopyRepository bookCopyRepository;
 

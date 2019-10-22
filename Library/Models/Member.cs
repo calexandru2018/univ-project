@@ -31,7 +31,7 @@ namespace Library.Models
         /// </summary>
         public override string ToString()
         {
-            return String.Format($"{this.SocialNumber}, MemberID[{this.Id}] {this.Name} -- {this.MemberSince.ToString("dd/MM/yyyy")}");
+            return String.Format($"[{this.Id}] Social Number: {this.SocialNumber},  {this.Name}, Registered Since: {this.MemberSince.ToString("dd/MM/yyyy")}");
         }
     }
 }
