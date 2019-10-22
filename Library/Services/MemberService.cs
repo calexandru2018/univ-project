@@ -8,20 +8,21 @@ using Library.Models;
 
 namespace Library.Services
 {
-    class MemberService : IService
+    public class MemberService : IService
     {
         MemberRepository memberRepository;
+
+        public event EventHandler Updated;
 
         public MemberService(RepositoryFactory rFactory)
         {
             this.memberRepository = rFactory.CreateMemberRepository();
         }
 
-        public event EventHandler Updated;
-
         public void Add(Member member)
         {
             memberRepository.Add(member);
+            OnUpdated();
         }
 
         public IEnumerable<Member> All()
@@ -34,12 +35,18 @@ namespace Library.Services
         public void Edit(Member m)
         {
             memberRepository.Edit(m);
-            // TODO: Raise the Updated event.
+            OnUpdated();
         }
 
         public void Remove(Member m)
         {
             memberRepository.Remove(m);
+            OnUpdated();
+        }
+
+        private void OnUpdated()
+        {
+            Updated?.Invoke(this, EventArgs.Empty);
         }
     }
 }

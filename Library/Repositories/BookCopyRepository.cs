@@ -32,7 +32,9 @@ namespace Library.Repositories
         {
             var loans = context.Loans;
             var bookCopies = context.BookCopies;
-            return context.BookCopies.Where(bookCopy => !loans.Any(loan => loan.BookCopyId == bookCopy.Id));
+            //return context.BookCopies.Where(bookCopy => !loans.Any(loan => loan.BookCopyId == bookCopy.Id));
+            //return context.BookCopies.Where(bookCopy => !loans.Where(loan=>loan.ReturnLoanTimestamp == null).Any(loan => loan.BookCopyId == bookCopy.Id));
+            return bookCopies.Except(loans.Where(l => l.ReturnLoanTimestamp == null).Select(l => l.bookCopy));
         }
         
         public BookCopy Find(int id)
@@ -42,7 +44,7 @@ namespace Library.Repositories
 
         public void Remove(BookCopy item)
         {
-            throw new NotImplementedException();
+            context.BookCopies.Remove(item);
         }
 
         public void Edit(BookCopy a)

@@ -63,6 +63,12 @@
     <Compile Include="LibraryForm.Designer.cs">
       <DependentUpon>LibraryForm.cs</DependentUpon>
     </Compile>
+    <Compile Include="MemberList.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="MemberList.Designer.cs">
+      <DependentUpon>MemberList.cs</DependentUpon>
+    </Compile>
     <Compile Include="Models\Author.cs" />
     <Compile Include="Models\BookCopy.cs" />
     <Compile Include="Models\LibraryDbInit.cs" />
@@ -87,6 +93,9 @@
     <Compile Include="Services\MemberService.cs" />
     <EmbeddedResource Include="LibraryForm.resx">
       <DependentUpon>LibraryForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="MemberList.resx">
+      <DependentUpon>MemberList.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>

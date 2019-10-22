@@ -26,7 +26,6 @@ namespace Library.Models
         {
             this.bookCopy = bookCopy;
             this.member = member;
-            //StartLoanTimestamp = DateTime.Today.Date;
             StartLoanTimestamp = startloantime;
             DueDate = StartLoanTimestamp.AddDays(15);
             //ReturnLoanTimestamp = returnLoan;
@@ -46,8 +45,8 @@ namespace Library.Models
             {
                 message = "Returned";
             }
-            return String.Format($"[{this.Id}] {this.StartLoanTimestamp} - Due:{this.DueDate}; ReturnedDate: [{this.ReturnLoanTimestamp}]; BookCopy: {this.bookCopy.BookObject.Title};Member {this.member.Name}; Status: {message}");
-            //return String.Format($"[{this.Id}] Start{this.StartLoanTimestamp} - Due:{this.DueDate}; ReturnedDate: [{this.ReturnLoanTimestamp}]; Status: {message}");
+            //return String.Format($"[{this.Id}] {this.StartLoanTimestamp} - Due:{this.DueDate}; ReturnedDate: [{this.ReturnLoanTimestamp}]; BookCopy: {this.bookCopy.BookObject?.Title};Member {this.member?.Name}; Status: {message}");
+            return String.Format($"[{this.Id}] Start{this.StartLoanTimestamp} - Due:{this.DueDate}; ReturnedDate: [{this.ReturnLoanTimestamp}]; Status: {message}");
         }
     }
 }

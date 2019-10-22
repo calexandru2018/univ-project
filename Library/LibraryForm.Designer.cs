@@ -65,6 +65,7 @@
             this.returnLoad = new System.Windows.Forms.Button();
             this.datePicker = new System.Windows.Forms.DateTimePicker();
             this.btnRemoveMember = new System.Windows.Forms.Button();
+            this.button1 = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
             // lbBooks
@@ -438,11 +439,22 @@
             this.btnRemoveMember.UseVisualStyleBackColor = true;
             this.btnRemoveMember.Click += new System.EventHandler(this.btnRemoveMember_Click);
             // 
+            // button1
+            // 
+            this.button1.Location = new System.Drawing.Point(802, 324);
+            this.button1.Name = "button1";
+            this.button1.Size = new System.Drawing.Size(137, 23);
+            this.button1.TabIndex = 22;
+            this.button1.Text = "button1";
+            this.button1.UseVisualStyleBackColor = true;
+            this.button1.Click += new System.EventHandler(this.button1_Click_1);
+            // 
             // LibraryForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1005, 844);
+            this.Controls.Add(this.button1);
             this.Controls.Add(this.btnRemoveMember);
             this.Controls.Add(this.datePicker);
             this.Controls.Add(this.returnLoad);
@@ -487,6 +499,7 @@
             this.Controls.Add(this.lbBooks);
             this.Name = "LibraryForm";
             this.Text = "Add new copy";
+            this.Load += new System.EventHandler(this.LibraryForm_Load);
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -536,6 +549,7 @@
         private System.Windows.Forms.Button returnLoad;
         private System.Windows.Forms.DateTimePicker datePicker;
         private System.Windows.Forms.Button btnRemoveMember;
+        private System.Windows.Forms.Button button1;
     }
 }
 

@@ -26,6 +26,7 @@ namespace Library.Services
         public void Add(Book book)
         {
             bookRepository.Add(book);
+            OnUpdated();
         }
 
         public IEnumerable<Book> All()
@@ -50,8 +51,12 @@ namespace Library.Services
         public void Edit(Book book)
         {
             bookRepository.Edit(book);
-            //Updated.Invoke(this, e);
-            // TODO: Raise the Updated event.
+            OnUpdated();
+        }
+
+        private void OnUpdated()
+        {
+            Updated?.Invoke(this, EventArgs.Empty);
         }
     }
 }

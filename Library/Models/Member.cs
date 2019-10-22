@@ -12,7 +12,7 @@ namespace Library.Models
         public string SocialNumber { get; set; }
         public string Name { get; set; }
         public DateTime MemberSince { get; set; }
-        public List<Loan> LoanList { get; set; }
+        public virtual ICollection<Loan> LoanList { get; set; }
 
         public Member()
         {

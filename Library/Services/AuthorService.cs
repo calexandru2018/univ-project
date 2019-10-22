@@ -12,16 +12,17 @@ namespace Library.Services
     {
         AuthorRepository authorRepository;
 
+        public event EventHandler Updated;
+
         public AuthorService(RepositoryFactory rFactory)
         {
             this.authorRepository = rFactory.CreateAuthorRepository();
         }
 
-        public event EventHandler Updated;
-
         public void Add(Author author)
         {
             authorRepository.Add(author);
+            OnUpdated();
         }
 
         public IEnumerable<Author> All()
@@ -34,6 +35,12 @@ namespace Library.Services
         public void Edit(Author a)
         {
             authorRepository.Edit(a);
+            OnUpdated();
+        }
+
+        private void OnUpdated()
+        {
+            Updated?.Invoke(this, EventArgs.Empty);
         }
     }
 }

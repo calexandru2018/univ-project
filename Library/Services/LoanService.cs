@@ -8,9 +8,11 @@ using System.Threading.Tasks;
 
 namespace Library.Services
 {
-    class LoanService
+    class LoanService : IService
     {
         LoanRepository loanRepository;
+
+        public event EventHandler Updated;
 
         public LoanService(RepositoryFactory rFactory)
         {
@@ -20,6 +22,7 @@ namespace Library.Services
         public void Add(Loan loan)
         {
             loanRepository.Add(loan);
+            OnUpdated();
         }
 
         public IEnumerable<Loan> AllMemberLoans(Member member)
@@ -37,12 +40,18 @@ namespace Library.Services
         public void Edit(Loan l)
         {
             loanRepository.Edit(l);
-            // TODO: Raise the Updated event.
+            OnUpdated();
         }
 
         public void Remove(Loan item)
         {
             loanRepository.Remove(item);
+            OnUpdated();
+        }
+
+        private void OnUpdated()
+        {
+            Updated?.Invoke(this, EventArgs.Empty);
         }
     }
 }

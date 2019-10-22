@@ -8,9 +8,11 @@ using Library.Models;
 
 namespace Library.Services
 {
-    class BookCopyService
+    class BookCopyService : IService
     {
         BookCopyRepository bookCopyRepository;
+
+        public event EventHandler Updated;
 
         public BookCopyService(RepositoryFactory rFactory)
         {
@@ -20,12 +22,14 @@ namespace Library.Services
         public void Add(BookCopy bookCopy)
         {
             bookCopyRepository.Add(bookCopy);
+            OnUpdated();
         }
 
         public IEnumerable<BookCopy> AllAvailable()
         {
             return bookCopyRepository.AllAvailable();
         }
+
         public IEnumerable<BookCopy> All()
         {
             return bookCopyRepository.All();
@@ -36,12 +40,18 @@ namespace Library.Services
         public void Edit(BookCopy b)
         {
             bookCopyRepository.Edit(b);
-            // TODO: Raise the Updated event.
+            OnUpdated();
         }
 
         public void Remove(BookCopy item)
         {
-            throw new NotImplementedException();
+            bookCopyRepository.Remove(item);
+            OnUpdated();
+        }
+
+        private void OnUpdated()
+        {
+            Updated?.Invoke(this, EventArgs.Empty);
         }
     }
 }

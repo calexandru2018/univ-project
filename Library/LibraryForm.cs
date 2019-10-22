@@ -39,6 +39,12 @@ namespace Library
             this.memberService = new MemberService(repFactory);
             this.loanService = new LoanService(repFactory);
 
+            this.bookService.Updated += BookService_Updated;
+            this.authorService.Updated += AuthorService_Updated;
+            this.bookCopyService.Updated += BookCopyService_Updated;
+            this.memberService.Updated += MemberService_Updated;
+            this.loanService.Updated += LoanService_Updated;
+
             ShowAllBooks(bookService.All());
             ShowAllAuthors(authorService.All());
             ShowAllBookCopies(bookCopyService.All());
@@ -47,6 +53,33 @@ namespace Library
             ShowAvailableCopies(bookCopyService.AllAvailable());
         }
 
+        private void LoanService_Updated(object sender, EventArgs e)
+        {
+            ShowAllLoans(loanService.All());
+            ShowAvailableCopies(bookCopyService.AllAvailable());
+        }
+
+        private void MemberService_Updated(object sender, EventArgs e)
+        {
+            ShowAllMembers(memberService.All());
+            ShowAllLoans(loanService.All());
+            ShowAvailableCopies(bookCopyService.AllAvailable());
+        }
+
+        private void BookCopyService_Updated(object sender, EventArgs e)
+        {
+            ShowAllBookCopies(bookCopyService.All());
+        }
+
+        private void AuthorService_Updated(object sender, EventArgs e)
+        {
+            ShowAllAuthors(authorService.All());
+        }
+
+        private void BookService_Updated(object sender, EventArgs e)
+        {
+            ShowAllBooks(bookService.All());
+        }
 
         private void BTNChangeBook_Click(object sender, EventArgs e)
         {
@@ -137,14 +170,7 @@ namespace Library
                 Description = addBookDesc.Text,
                 BookAuthor = addNewAuthor
             };
-
-            //addNewAuthor.BooksWritten.Add(newBook);
-
-            
             bookService.Add(newBook);
-
-            ShowAllBooks(bookService.All());
-            ShowAllAuthors(authorService.All());
         }
 
         private void addNewMember_Click(object sender, EventArgs e)
@@ -157,8 +183,6 @@ namespace Library
             };
 
             memberService.Add(newMember);
-
-            ShowAllMembers(memberService.All());
         }
 
         private void newAuthor_CheckedChanged(object sender, EventArgs e)
@@ -180,8 +204,6 @@ namespace Library
                 Book b = lbBooks.SelectedItem as Book;
                 BookCopy bookCopy = new BookCopy(b, Convert.ToInt32(bookCopyCondition.Text));
                 bookCopyService.Add(bookCopy);
-                ShowAllBookCopies(bookCopyService.All());
-                ShowAvailableCopies(bookCopyService.AllAvailable());
             }
             catch
             {
@@ -202,10 +224,6 @@ namespace Library
 
                 member.LoanList.Add(newbookLoan);
                 memberService.Edit(member);
-
-                loanService.Add(newbookLoan);
-                ShowAllLoans(loanService.All());
-                ShowAvailableCopies(bookCopyService.AllAvailable());
             }
             catch
             {
@@ -262,10 +280,8 @@ namespace Library
 
                 var message = fee <= 0 ? $"Thank {selectedLoan.member.Name} for the return." : $"The fee for {selectedLoan.member.Name} with {dayDiff} day(s) is {fee}:-";
 
-                loanService.Remove(selectedLoan);
+                loanService.Edit(selectedLoan);
                 MessageBox.Show(message);
-                ShowAvailableCopies(bookCopyService.AllAvailable());
-                ShowAllLoans(loanService.All());
             }
             catch
             {
@@ -282,15 +298,23 @@ namespace Library
                 if(confirm == DialogResult.Yes)
                 {
                     memberService.Remove(selectedMember);
-                    ShowAllMembers(memberService.All());
-                    ShowAllLoans(loanService.All());
-                    ShowAvailableCopies(bookCopyService.AllAvailable());
                 }
             }
             catch
             {
                 MessageBox.Show("unable to remove user");
             }
+        }
+
+        private void button1_Click_1(object sender, EventArgs e)
+        {
+            MemberList formMemberList = new MemberList(memberService);
+            formMemberList.ShowDialog();
+        }
+
+        private void LibraryForm_Load(object sender, EventArgs e)
+        {
+
         }
     }
 }
