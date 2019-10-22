@@ -41,35 +41,30 @@ namespace Library
 
             this.bookService.Updated += BookService_Updated;
             this.authorService.Updated += AuthorService_Updated;
-            this.bookCopyService.Updated += BookCopyService_Updated;
             this.memberService.Updated += MemberService_Updated;
             this.loanService.Updated += LoanService_Updated;
+            this.bookCopyService.Updated += BookCopyService_Updated;
 
             ShowAllBooks(bookService.All());
             ShowAllAuthors(authorService.All());
-            ShowAllBookCopies(bookCopyService.All());
-            ShowAllMembers(memberService.All());
-            ShowAllLoans(loanService.All());
-            ShowAvailableCopies(bookCopyService.AllAvailable());
-        }
-
-        private void LoanService_Updated(object sender, EventArgs e)
-        {
-            ShowAllLoans(loanService.All());
-            ShowAvailableCopies(bookCopyService.AllAvailable());
-        }
-
-        private void MemberService_Updated(object sender, EventArgs e)
-        {
-            ShowAllMembers(memberService.All());
-            ShowAllLoans(loanService.All());
             ShowAvailableCopies(bookCopyService.AllAvailable());
         }
 
         private void BookCopyService_Updated(object sender, EventArgs e)
         {
-            ShowAllBookCopies(bookCopyService.All());
+            ShowAvailableCopies(bookCopyService.AllAvailable());
         }
+
+        private void LoanService_Updated(object sender, EventArgs e)
+        {
+            ShowAvailableCopies(bookCopyService.AllAvailable());
+        }
+
+        private void MemberService_Updated(object sender, EventArgs e)
+        {
+            ShowAvailableCopies(bookCopyService.AllAvailable());
+        }
+
 
         private void AuthorService_Updated(object sender, EventArgs e)
         {
@@ -78,37 +73,8 @@ namespace Library
 
         private void BookService_Updated(object sender, EventArgs e)
         {
+            ShowAvailableCopies(bookCopyService.AllAvailable());
             ShowAllBooks(bookService.All());
-        }
-
-        private void BTNChangeBook_Click(object sender, EventArgs e)
-        {
-            Book b = lbBooks.SelectedItem as Book;
-            if (b != null)
-            {
-                b.Title = "Yoyoma koko";
-                bookService.Edit(b);
-                ShowAllBooks(bookService.All());
-            }
-        }
-
-        // Show methods
-        private void ShowAllLoans(IEnumerable<Loan> loans)
-        {
-            lbLoans.Items.Clear();
-            foreach (Loan loan in loans)
-            {
-                lbLoans.Items.Add(loan);
-            }
-        }
-
-        private void ShowAllMembers(IEnumerable<Member> members)
-        {
-            lbMembers.Items.Clear();
-            foreach (Member member in members)
-            {
-                lbMembers.Items.Add(member);
-            }
         }
 
         private void ShowAllBooks(IEnumerable<Book> books)
@@ -129,71 +95,12 @@ namespace Library
             }
         }
 
-        private void ShowAllBookCopies(IEnumerable<BookCopy> bookCopies)
-        {
-            lbBookCopies.Items.Clear();
-            foreach (BookCopy bookCopy in bookCopies)
-            {
-                lbBookCopies.Items.Add(bookCopy);
-            }
-        }
-
         private void ShowAvailableCopies(IEnumerable<BookCopy> bookCopies)
         {
             lbAvailCopies.Items.Clear();
             foreach (BookCopy bookCopy in bookCopies)
             {
                 lbAvailCopies.Items.Add(bookCopy);
-            }
-            Debug.WriteLine("Rendering show all available copies");
-        }
-
-        // Add new books and authors
-        private void addNewBook_Click_1(object sender, EventArgs e)
-        {
-            Author addNewAuthor;
-            if (newAuthor.Checked == false)
-            {
-                addNewAuthor = lbAuthors.SelectedItem as Author;
-                Debug.WriteLine(addNewAuthor);
-            }
-            else
-            {
-                addNewAuthor = new Author(addAuthorName.Text);
-                authorService.Add(addNewAuthor);
-            }
-           
-            Book newBook = new Book()
-            {
-                ISBN = addBookISBN.Text,
-                Title = addBookTitle.Text,
-                Description = addBookDesc.Text,
-                BookAuthor = addNewAuthor
-            };
-            bookService.Add(newBook);
-        }
-
-        private void addNewMember_Click(object sender, EventArgs e)
-        {
-            Member newMember = new Member()
-            {
-                SocialNumber = addMemberSocialNum.Text,
-                Name = addMemberName.Text,
-                MemberSince = DateTime.Now
-            };
-
-            memberService.Add(newMember);
-        }
-
-        private void newAuthor_CheckedChanged(object sender, EventArgs e)
-        {
-            if (newAuthor.Checked)
-            {
-                addAuthorName.Enabled = true;
-            }
-            else
-            {
-                addAuthorName.Enabled = false;
             }
         }
 
@@ -204,6 +111,7 @@ namespace Library
                 Book b = lbBooks.SelectedItem as Book;
                 BookCopy bookCopy = new BookCopy(b, Convert.ToInt32(bookCopyCondition.Text));
                 bookCopyService.Add(bookCopy);
+                Debug.WriteLine($"Added new book, {bookCopy.BookObject.Title} condition {bookCopy.Condition}");
             }
             catch
             {
@@ -211,35 +119,21 @@ namespace Library
             }
         }
 
-        private void loanBook_Click(object sender, EventArgs e)
-        {
-            try
-            {
-                BookCopy bookCopy = lbAvailCopies.SelectedItem as BookCopy;
-                Member member = lbMembers.SelectedItem as Member;
-                //Loan newbookLoan = new Loan(bookCopy, member);
-                Random rnd = new Random();
-                int daysDiff = rnd.Next(-20, 30);
-                Loan newbookLoan = new Loan(bookCopy, member, DateTime.Today.AddDays(daysDiff));
 
-                member.LoanList.Add(newbookLoan);
-                memberService.Edit(member);
-            }
-            catch
-            {
-                MessageBox.Show("Unable to load book");
-            }
-        }
-
+        /// <summary>
+        /// Filters books by selected author
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void listByAuthor_Click(object sender, EventArgs e)
         {
             try
             {
                 Author searchAfter = lbAuthors.SelectedItem as Author;
-                lbShowFilteredContent.Items.Clear();
+                lbBooks.Items.Clear();
                 foreach (Book book in bookService.GetAllByAuthor(searchAfter))
                 {
-                    lbShowFilteredContent.Items.Add(book);
+                    lbBooks.Items.Add(book);
                 }
             }
             catch
@@ -248,73 +142,79 @@ namespace Library
             }
         }
 
-        private void showUserHistory_Click(object sender, EventArgs e)
-        {
-            try
-            {
-                Member selectedMember = lbMembers.SelectedItem as Member;
-                removeMember.Items.Clear();
-                foreach (Loan loan in loanService.AllMemberLoans(selectedMember))
-                {
-                    removeMember.Items.Add(loan);
-                }
-            }
-            catch
-            {
-                MessageBox.Show("Select a member to show");
-            }
-           
-        }
-
-        private void button1_Click(object sender, EventArgs e)
-        {
-            try
-            {
-
-                Loan selectedLoan = lbLoans.SelectedItem as Loan;
-                DateTime returnDate = datePicker.Value.Date;
-
-                selectedLoan.ReturnLoanTimestamp = returnDate;
-                int dayDiff = (int)(returnDate - selectedLoan.DueDate).TotalDays;
-                int fee = dayDiff * 10;
-
-                var message = fee <= 0 ? $"Thank {selectedLoan.member.Name} for the return." : $"The fee for {selectedLoan.member.Name} with {dayDiff} day(s) is {fee}:-";
-
-                loanService.Edit(selectedLoan);
-                MessageBox.Show(message);
-            }
-            catch
-            {
-                MessageBox.Show("Something went wrong");
-            }
-        }
-
-        private void btnRemoveMember_Click(object sender, EventArgs e)
-        {
-            try
-            {
-                Member selectedMember = lbMembers.SelectedItem as Member;
-                var confirm = MessageBox.Show($"Do you really want to remove {selectedMember.Name}","Remove member from System", MessageBoxButtons.YesNo);
-                if(confirm == DialogResult.Yes)
-                {
-                    memberService.Remove(selectedMember);
-                }
-            }
-            catch
-            {
-                MessageBox.Show("unable to remove user");
-            }
-        }
-
+        /// <summary>
+        /// Shows list with Member/Loan Management
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void button1_Click_1(object sender, EventArgs e)
         {
             MemberList formMemberList = new MemberList(memberService, loanService, bookCopyService);
             formMemberList.ShowDialog();
         }
 
+        /// <summary>
+        /// Shows form to create/add new book
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void button2_Click(object sender, EventArgs e)
+        {
+            CreateNewBook formCreateNewBook = new CreateNewBook(authorService, bookService);
+            formCreateNewBook.ShowDialog();
+        }
+
+        /// <summary>
+        /// Shows form with Loan History
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void button3_Click(object sender, EventArgs e)
+        {
+            LoanHistory formLoanHistory = new LoanHistory(loanService);
+            formLoanHistory.ShowDialog();
+        }
+
+        private void btnReset_Click(object sender, EventArgs e)
+        {
+            lbAuthors.ClearSelected();
+            ShowAllBooks(bookService.All());
+        }
+
+        private void lbAuthors_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            if(lbAuthors.SelectedIndex >= 0)
+            {
+                btnByAuthor.Enabled = true;
+            }
+            else
+            {
+                btnByAuthor.Enabled = false;
+            }
+        }
+
         private void LibraryForm_Load(object sender, EventArgs e)
         {
 
+        }
+
+        private void btnClose_Click(object sender, EventArgs e)
+        {
+            this.Close();
+        }
+
+        private void lbBooks_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            if(lbBooks.SelectedIndex >= 0)
+            {
+                addNewBookCopy.Enabled = true;
+                bookCopyCondition.Enabled = true;
+            }
+            else
+            {
+                addNewBookCopy.Enabled = false;
+                bookCopyCondition.Enabled = false;
+            }
         }
     }
 }

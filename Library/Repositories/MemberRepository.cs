@@ -39,7 +39,7 @@ namespace Library.Repositories
 
         public Member Find(int id)
         {
-            throw new NotImplementedException();
+            return context.Members.Single(member => member.Id == id);
         }
 
         public void Remove(Member item)

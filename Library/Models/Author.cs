@@ -10,17 +10,15 @@ namespace Library.Models
     {
         public int Id { get; set; }
         public string Name { get; set; }
-        //public List<Book> BooksWritten;
 
         public Author()
         {
-            //BooksWritten = new List<Book>();
+
         }
 
         public Author(string name)
         {
             Name = name;
-            //BooksWritten = new List<Book>();
         }
 
         /// <summary>

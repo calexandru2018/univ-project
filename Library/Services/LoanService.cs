@@ -35,7 +35,10 @@ namespace Library.Services
             return loanRepository.All();
         }
 
-        // Space to create custom functions to search, edit, delete authors
+        public IEnumerable<Loan> FindLoansBy(Func<Loan, bool> expression)
+        {
+            return loanRepository.All().Where(expression);
+        }        
 
         public void Edit(Loan l)
         {

@@ -57,6 +57,12 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="CreateNewBook.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="CreateNewBook.Designer.cs">
+      <DependentUpon>CreateNewBook.cs</DependentUpon>
+    </Compile>
     <Compile Include="CreateNewLoan.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -74,6 +80,12 @@
     </Compile>
     <Compile Include="LibraryForm.Designer.cs">
       <DependentUpon>LibraryForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="LoanHistory.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="LoanHistory.Designer.cs">
+      <DependentUpon>LoanHistory.cs</DependentUpon>
     </Compile>
     <Compile Include="MemberList.cs">
       <SubType>Form</SubType>
@@ -103,6 +115,9 @@
     <Compile Include="Services\IService.cs" />
     <Compile Include="Services\LoanService.cs" />
     <Compile Include="Services\MemberService.cs" />
+    <EmbeddedResource Include="CreateNewBook.resx">
+      <DependentUpon>CreateNewBook.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="CreateNewLoan.resx">
       <DependentUpon>CreateNewLoan.cs</DependentUpon>
     </EmbeddedResource>
@@ -111,6 +126,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="LibraryForm.resx">
       <DependentUpon>LibraryForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="LoanHistory.resx">
+      <DependentUpon>LoanHistory.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="MemberList.resx">
       <DependentUpon>MemberList.cs</DependentUpon>

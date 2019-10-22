@@ -32,7 +32,6 @@ namespace Library.Repositories
         {
             var loans = context.Loans;
             var bookCopies = context.BookCopies;
-            //return context.BookCopies.Where(bookCopy => !loans.Any(loan => loan.BookCopyId == bookCopy.Id));
             //return context.BookCopies.Where(bookCopy => !loans.Where(loan=>loan.ReturnLoanTimestamp == null).Any(loan => loan.BookCopyId == bookCopy.Id));
             return bookCopies.Except(loans.Where(l => l.ReturnLoanTimestamp == null).Select(l => l.bookCopy));
         }

@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace Library.Services
 {
-    class BookService : IService
+    public class BookService : IService
     {
         /// <summary>
         /// service doesn't need a context but it needs a repository.
@@ -31,7 +31,7 @@ namespace Library.Services
 
         public IEnumerable<Book> All()
         {
-            return bookRepository.All();
+            return bookRepository.All().OrderByDescending(book => book.Id);
         }
 
         public IEnumerable<Book> GetAllByAuthor(Author author)

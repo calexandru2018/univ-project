@@ -14,7 +14,7 @@ namespace Library.Models {
         public string Description { get; set; }
         public int BookAuthorId { get; set; }
         public virtual Author BookAuthor { get; set; }
-        public virtual List<BookCopy> BookCopies { get; set; }
+        public virtual ICollection<BookCopy> BookCopies { get; set; }
 
         public Book()
         {
@@ -34,7 +34,7 @@ namespace Library.Models {
         /// Useful for adding the book objects directly to a ListBox.
         /// </summary>
         public override string ToString() {
-            return String.Format($"[{Id}] Author[{BookAuthorId}] -- {Title}");
+            return String.Format($"[{Id}] {Title}");
         }
     }
 }

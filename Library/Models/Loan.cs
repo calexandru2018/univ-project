@@ -45,8 +45,9 @@ namespace Library.Models
             {
                 message = "Returned";
             }
-            return String.Format($"[{this.Id}] {this.StartLoanTimestamp} - Due:{this.DueDate}; ReturnedDate: [{this.ReturnLoanTimestamp}]; BookCopy: {this.bookCopy.BookObject?.Title};Member {this.member?.Name}; Status: {message}");
-            //return String.Format($"[{this.Id}] Start{this.StartLoanTimestamp} - Due:{this.DueDate}; ReturnedDate: [{this.ReturnLoanTimestamp}]; Status: {message}; UserID: {this.MemberId}");
+
+            return String.Format($"Loan[{this.Id}] -- Status: {message}; Loaned: {this.StartLoanTimestamp.ToString("dd/MM/yyyy")} - Due:{this.DueDate.ToString("dd/MM/yyyy")}; Returned: {this.ReturnLoanTimestamp?.ToString("dd/MM/yyyy")}; BookCopy: {this.bookCopy.BookObject?.Title};");
+            //return String.Format($"Loan[{this.Id}] -- Status: {message}; Loaned: {this.StartLoanTimestamp.ToString("dd/MM/yyyy")} - Due:{this.DueDate.ToString("dd/MM/yyyy")}; Returned: {this.ReturnLoanTimestamp?.ToString("dd/MM/yyyy")}; BookCopy: {this.BookCopyId};");
         }
     }
 }

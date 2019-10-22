@@ -31,7 +31,12 @@ namespace Library
 
         private void LoanService_Updated(object sender, EventArgs e)
         {
-            throw new NotImplementedException();
+            Member selectedMember = lbMembers.SelectedItem as Member;
+            lbLoanHistory.Items.Clear();
+            foreach (Loan loan in loanService.AllMemberLoans(selectedMember))
+            {
+                lbLoanHistory.Items.Add(loan);
+            }
         }
 
         private void MemberService_Updated(object sender, EventArgs e)
@@ -101,9 +106,54 @@ namespace Library
             formCreateNewMember.ShowDialog();
         }
 
+        private void btnCreateMember_Click(object sender, EventArgs e)
+        {
+            CreateNewMember formCreateNewMember = new CreateNewMember(memberService);
+            formCreateNewMember.ShowDialog();
+        }
+
+        private void button1_Click_1(object sender, EventArgs e)
+        {
+            try
+            {
+                Member selectedMember = lbMembers.SelectedItem as Member;
+                var confirm = MessageBox.Show($"Do you really want to remove {selectedMember.Name}", "Remove member from System", MessageBoxButtons.YesNo);
+                if (confirm == DialogResult.Yes)
+                {
+                    memberService.Remove(selectedMember);
+                }
+            }
+            catch
+            {
+                MessageBox.Show("Unable to remove user.");
+            }
+        }
+
         private void btnBack_Click(object sender, EventArgs e)
         {
             this.Close();
+        }
+
+        private void btnReturnLoan_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                Loan selectedLoan = lbLoanHistory.SelectedItem as Loan;
+                DateTime returnDate = dpReturnDate.Value.Date;
+
+                selectedLoan.ReturnLoanTimestamp = returnDate;
+                int dayDiff = (int)(returnDate - selectedLoan.DueDate).TotalDays;
+                int fee = dayDiff * 10;
+
+                var message = fee <= 0 ? $"Thank {selectedLoan.member.Name} for the return." : $"The fee for {selectedLoan.member.Name} with {dayDiff} day(s) is {fee}:-";
+
+                loanService.Edit(selectedLoan);
+                MessageBox.Show(message);
+            }
+            catch
+            {
+                MessageBox.Show("Something went wrong");
+            }
         }
     }
 }

@@ -8,7 +8,7 @@ using Library.Models;
 
 namespace Library.Services
 {
-    class AuthorService : IService
+    public class AuthorService : IService
     {
         AuthorRepository authorRepository;
 
@@ -27,7 +27,7 @@ namespace Library.Services
 
         public IEnumerable<Author> All()
         {
-            return authorRepository.All();
+            return authorRepository.All().OrderByDescending(author => author.Id);
         }
 
         // Space to create custom functions to search, edit, delete authors

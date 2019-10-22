@@ -4,6 +4,7 @@ using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
+using System.Diagnostics;
 using System.Drawing;
 using System.Linq;
 using System.Text;
@@ -26,9 +27,22 @@ namespace Library
             loanService = ls;
             bookCopyService = bk;
             memberId = mId;
-            this.bookCopyService.Updated += BookCopyService_Updated;
+
             InitializeComponent();
 
+            bookCopyService.Updated += BookCopyService_Updated;
+            memberService.Updated += MemberService_Updated;
+            loanService.Updated += LoanService_Updated;
+            ShowAvailableCopies(bookCopyService.AllAvailable());
+        }
+
+        private void LoanService_Updated(object sender, EventArgs e)
+        {
+            ShowAvailableCopies(bookCopyService.AllAvailable());
+        }
+
+        private void MemberService_Updated(object sender, EventArgs e)
+        {
             ShowAvailableCopies(bookCopyService.AllAvailable());
         }
 
@@ -43,12 +57,9 @@ namespace Library
             foreach (BookCopy bookCopy in bookCopies)
             {
                 lbAvailCopies.Items.Add(bookCopy);
+                Debug.WriteLine("Inside loop create new look");
             }
-        }
-
-        private void btnBack_Click(object sender, EventArgs e)
-        {
-            this.Close();
+            Debug.WriteLine("Rendering show all available copies inside create new");
         }
 
         private void btnCreate_Click(object sender, EventArgs e)
@@ -57,26 +68,77 @@ namespace Library
             {
                 BookCopy bookCopy = lbAvailCopies.SelectedItem as BookCopy;
                 Member member = FindMemberBiId(memberId);
+                Debug.WriteLine(member.Name);
                 //Loan newbookLoan = new Loan(bookCopy, member);
                 Random rnd = new Random();
                 int daysDiff = rnd.Next(-20, 30);
-                Loan newbookLoan = new Loan(bookCopy, member, DateTime.Today.AddDays(daysDiff));
-
+                Loan newbookLoan = new Loan(bookCopy, member, DateTime.Today.AddDays(daysDiff))
+                {
+                    ReturnLoanTimestamp = null
+                };
                 member.LoanList.Add(newbookLoan);
                 memberService.Edit(member);
             }
-            catch
+            catch(Exception exp)
             {
-                MessageBox.Show("Unable to load book");
+                MessageBox.Show("Unable to loan the book.");
+                Debug.WriteLine(exp);
             }
         }
 
         private Member FindMemberBiId(int memberId)
         {
-            //memberService.
-            throw new NotImplementedException();
+            return memberService.Find(memberId);
         }
 
+        private void btnBack_Click(object sender, EventArgs e)
+        {
+            this.Close();
+        }
+
+        private void btnFilterBy_Click(object sender, EventArgs e)
+        {
+            int _cbFIlterBy = cbFilterBy.SelectedIndex;
+            string _txtFilterBy = txtFilterBy.Text.Trim();
+            if (_cbFIlterBy >= 0 && _txtFilterBy.Length > 0)
+            {
+                FindBookBy(_cbFIlterBy, _txtFilterBy);
+            }
+            else
+            {
+                MessageBox.Show("You need to choose a option and type in either the title or authors name.");
+            }
+        }
+
+        private void FindBookBy(int searchOption, string searchTerm)
+        {
+            // 0 - Book title
+            // 1 - Author
+            IEnumerable<BookCopy> bookCopies = bookCopyService.FindBookByAuthor(searchTerm);
+
+            if (searchOption == 0)
+            {
+                bookCopies = bookCopyService.FindBookByTitle(searchTerm);
+            }
+            if(bookCopies.Count() > 0)
+            {
+                lbAvailCopies.Items.Clear();
+                foreach (BookCopy bk in bookCopies)
+                {
+                    lbAvailCopies.Items.Add(bk);
+                }
+            }
+            else
+            {
+                MessageBox.Show("No such books were found");
+            }
+            
+        } 
+
+        private void txtFilterBy_TextChanged(object sender, EventArgs e)
+        {
+
+        }
 
         private void CreateNewLoan_Load(object sender, EventArgs e)
         {

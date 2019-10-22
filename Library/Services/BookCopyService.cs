@@ -27,15 +27,23 @@ namespace Library.Services
 
         public IEnumerable<BookCopy> AllAvailable()
         {
-            return bookCopyRepository.AllAvailable();
+            return bookCopyRepository.AllAvailable().OrderBy(book => book.BookObject.Id);
         }
 
         public IEnumerable<BookCopy> All()
         {
-            return bookCopyRepository.All();
+            return bookCopyRepository.All().OrderBy(book => book.BookObject.Id);
         }
 
-        // Space to create custom functions to search, edit, delete authors
+        public IEnumerable<BookCopy> FindBookByTitle(string title)
+        {
+            return bookCopyRepository.AllAvailable().Where(bookCopy => bookCopy.BookObject.Title.Contains(title));
+        }
+
+        public IEnumerable<BookCopy> FindBookByAuthor(string author)
+        {
+            return bookCopyRepository.AllAvailable().Where(bookCopy => bookCopy.BookObject.BookAuthor.Name.Contains(author));
+        }
 
         public void Edit(BookCopy b)
         {

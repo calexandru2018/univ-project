@@ -32,6 +32,11 @@ namespace Library.Services
 
         // Space to create custom functions to search, edit, delete authors
 
+        public Member Find(int id)
+        {
+            return memberRepository.Find(id);
+        }
+
         public void Edit(Member m)
         {
             memberRepository.Edit(m);

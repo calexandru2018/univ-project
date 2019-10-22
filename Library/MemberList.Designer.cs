@@ -35,10 +35,13 @@
             this.cbFilterBy = new System.Windows.Forms.ComboBox();
             this.btnNewLoan = new System.Windows.Forms.Button();
             this.btnBack = new System.Windows.Forms.Button();
-            this.textBox1 = new System.Windows.Forms.TextBox();
+            this.txtFilterBy = new System.Windows.Forms.TextBox();
             this.lbLoanHistory = new System.Windows.Forms.ListBox();
             this.label2 = new System.Windows.Forms.Label();
+            this.btnCreateMember = new System.Windows.Forms.Button();
             this.button1 = new System.Windows.Forms.Button();
+            this.btnReturnLoan = new System.Windows.Forms.Button();
+            this.dpReturnDate = new System.Windows.Forms.DateTimePicker();
             this.SuspendLayout();
             // 
             // lbMembers
@@ -92,7 +95,7 @@
             // 
             // btnNewLoan
             // 
-            this.btnNewLoan.Location = new System.Drawing.Point(564, 454);
+            this.btnNewLoan.Location = new System.Drawing.Point(426, 454);
             this.btnNewLoan.Name = "btnNewLoan";
             this.btnNewLoan.Size = new System.Drawing.Size(114, 28);
             this.btnNewLoan.TabIndex = 6;
@@ -110,16 +113,17 @@
             this.btnBack.UseVisualStyleBackColor = true;
             this.btnBack.Click += new System.EventHandler(this.btnBack_Click);
             // 
-            // textBox1
+            // txtFilterBy
             // 
-            this.textBox1.Location = new System.Drawing.Point(176, 37);
-            this.textBox1.Name = "textBox1";
-            this.textBox1.Size = new System.Drawing.Size(148, 20);
-            this.textBox1.TabIndex = 9;
+            this.txtFilterBy.Location = new System.Drawing.Point(176, 37);
+            this.txtFilterBy.Name = "txtFilterBy";
+            this.txtFilterBy.Size = new System.Drawing.Size(148, 20);
+            this.txtFilterBy.TabIndex = 9;
             // 
             // lbLoanHistory
             // 
             this.lbLoanHistory.FormattingEnabled = true;
+            this.lbLoanHistory.HorizontalScrollbar = true;
             this.lbLoanHistory.Location = new System.Drawing.Point(564, 79);
             this.lbLoanHistory.Name = "lbLoanHistory";
             this.lbLoanHistory.Size = new System.Drawing.Size(490, 355);
@@ -135,24 +139,54 @@
             this.label2.TabIndex = 1;
             this.label2.Text = "User Loan History";
             // 
+            // btnCreateMember
+            // 
+            this.btnCreateMember.Location = new System.Drawing.Point(210, 454);
+            this.btnCreateMember.Name = "btnCreateMember";
+            this.btnCreateMember.Size = new System.Drawing.Size(114, 28);
+            this.btnCreateMember.TabIndex = 11;
+            this.btnCreateMember.Text = "Add New Member";
+            this.btnCreateMember.UseVisualStyleBackColor = true;
+            this.btnCreateMember.Click += new System.EventHandler(this.btnCreateMember_Click);
+            // 
             // button1
             // 
             this.button1.Location = new System.Drawing.Point(12, 454);
             this.button1.Name = "button1";
             this.button1.Size = new System.Drawing.Size(114, 28);
             this.button1.TabIndex = 12;
-            this.button1.Text = "Create new Member";
+            this.button1.Text = "Remove Member";
             this.button1.UseVisualStyleBackColor = true;
-            this.button1.Click += new System.EventHandler(this.button1_Click);
+            this.button1.Click += new System.EventHandler(this.button1_Click_1);
+            // 
+            // btnReturnLoan
+            // 
+            this.btnReturnLoan.Location = new System.Drawing.Point(564, 454);
+            this.btnReturnLoan.Name = "btnReturnLoan";
+            this.btnReturnLoan.Size = new System.Drawing.Size(114, 28);
+            this.btnReturnLoan.TabIndex = 13;
+            this.btnReturnLoan.Text = "Return Loan";
+            this.btnReturnLoan.UseVisualStyleBackColor = true;
+            this.btnReturnLoan.Click += new System.EventHandler(this.btnReturnLoan_Click);
+            // 
+            // dpReturnDate
+            // 
+            this.dpReturnDate.Location = new System.Drawing.Point(684, 458);
+            this.dpReturnDate.Name = "dpReturnDate";
+            this.dpReturnDate.Size = new System.Drawing.Size(244, 20);
+            this.dpReturnDate.TabIndex = 14;
             // 
             // MemberList
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1066, 505);
+            this.Controls.Add(this.dpReturnDate);
+            this.Controls.Add(this.btnReturnLoan);
             this.Controls.Add(this.button1);
+            this.Controls.Add(this.btnCreateMember);
             this.Controls.Add(this.lbLoanHistory);
-            this.Controls.Add(this.textBox1);
+            this.Controls.Add(this.txtFilterBy);
             this.Controls.Add(this.btnBack);
             this.Controls.Add(this.btnNewLoan);
             this.Controls.Add(this.cbFilterBy);
@@ -178,9 +212,12 @@
         private System.Windows.Forms.ComboBox cbFilterBy;
         private System.Windows.Forms.Button btnNewLoan;
         private System.Windows.Forms.Button btnBack;
-        private System.Windows.Forms.TextBox textBox1;
+        private System.Windows.Forms.TextBox txtFilterBy;
         private System.Windows.Forms.ListBox lbLoanHistory;
         private System.Windows.Forms.Label label2;
+        private System.Windows.Forms.Button btnCreateMember;
         private System.Windows.Forms.Button button1;
+        private System.Windows.Forms.Button btnReturnLoan;
+        private System.Windows.Forms.DateTimePicker dpReturnDate;
     }
 }

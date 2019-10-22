@@ -28,22 +28,22 @@
         /// </summary>
         private void InitializeComponent()
         {
-            System.Windows.Forms.TextBox txtFilterBy;
+            this.txtFilterBy = new System.Windows.Forms.TextBox();
             this.cbFilterBy = new System.Windows.Forms.ComboBox();
             this.btnFilterBy = new System.Windows.Forms.Button();
             this.label1 = new System.Windows.Forms.Label();
             this.lbAvailCopies = new System.Windows.Forms.ListBox();
             this.btnBack = new System.Windows.Forms.Button();
             this.btnCreate = new System.Windows.Forms.Button();
-            txtFilterBy = new System.Windows.Forms.TextBox();
             this.SuspendLayout();
             // 
             // txtFilterBy
             // 
-            txtFilterBy.Location = new System.Drawing.Point(176, 22);
-            txtFilterBy.Name = "txtFilterBy";
-            txtFilterBy.Size = new System.Drawing.Size(274, 20);
-            txtFilterBy.TabIndex = 15;
+            this.txtFilterBy.Location = new System.Drawing.Point(176, 22);
+            this.txtFilterBy.Name = "txtFilterBy";
+            this.txtFilterBy.Size = new System.Drawing.Size(274, 20);
+            this.txtFilterBy.TabIndex = 15;
+            this.txtFilterBy.TextChanged += new System.EventHandler(this.txtFilterBy_TextChanged);
             // 
             // cbFilterBy
             // 
@@ -64,6 +64,7 @@
             this.btnFilterBy.TabIndex = 12;
             this.btnFilterBy.Text = "Search";
             this.btnFilterBy.UseVisualStyleBackColor = true;
+            this.btnFilterBy.Click += new System.EventHandler(this.btnFilterBy_Click);
             // 
             // label1
             // 
@@ -109,7 +110,7 @@
             this.ClientSize = new System.Drawing.Size(552, 486);
             this.Controls.Add(this.btnBack);
             this.Controls.Add(this.btnCreate);
-            this.Controls.Add(txtFilterBy);
+            this.Controls.Add(this.txtFilterBy);
             this.Controls.Add(this.cbFilterBy);
             this.Controls.Add(this.btnFilterBy);
             this.Controls.Add(this.label1);
@@ -129,5 +130,6 @@
         private System.Windows.Forms.ListBox lbAvailCopies;
         private System.Windows.Forms.Button btnBack;
         private System.Windows.Forms.Button btnCreate;
+        private System.Windows.Forms.TextBox txtFilterBy;
     }
 }
