@@ -31,18 +31,20 @@ namespace Library
             ShowAllLoans(loanService.All());
         }
 
+        /// <summary>
+        /// Calls the functions FindLoansBy that filerts the list based on the user input
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void btnFilterBy_Click(object sender, EventArgs e)
         {
-            /*
-              
-            */
+
             if(cbFilterBy.SelectedIndex >= 0)
             {
                 string _txtFilterBy = txtFilterBy.Text.Trim();
                 if (_txtFilterBy.Length > 0)
                 {
                     FindLoansBy(cbFilterBy.SelectedIndex, _txtFilterBy);
-                    Debug.WriteLine("In here");
                 }
                 else
                 {

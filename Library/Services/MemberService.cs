@@ -30,7 +30,10 @@ namespace Library.Services
             return memberRepository.All();
         }
 
-        // Space to create custom functions to search, edit, delete authors
+        public IEnumerable<Member> FindMembersBy(Func<Member, bool> expression)
+        {
+            return memberRepository.All().Where(expression);
+        }
 
         public Member Find(int id)
         {

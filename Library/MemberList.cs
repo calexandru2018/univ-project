@@ -24,12 +24,19 @@ namespace Library
             memberService = ms;
             loanService = ls;
             bookCopyService = bk;
+            
+            InitializeComponent();
+
             memberService.Updated += MemberService_Updated;
             loanService.Updated += LoanService_Updated;
-            InitializeComponent();
             ShowAllMembers(memberService.All());
         }
 
+        /// <summary>
+        /// Event method that updates the listbox with a users loan history
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void LoanService_Updated(object sender, EventArgs e)
         {
             Member selectedMember = lbMembers.SelectedItem as Member;
@@ -40,6 +47,11 @@ namespace Library
             }
         }
 
+        /// <summary>
+        /// Event method that update calls for the ShowAllMembers
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void MemberService_Updated(object sender, EventArgs e)
         {
             ShowAllMembers(memberService.All());
@@ -54,16 +66,11 @@ namespace Library
             }
         }
 
-        private void listBox1_SelectedIndexChanged(object sender, EventArgs e)
-        {
-
-        }
-
-        private void MemberList_Load(object sender, EventArgs e)
-        {
-
-        }
-
+        /// <summary>
+        /// Loads a loan history based on the selected user
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void btnShowLoanHistory_Click(object sender, EventArgs e)
         {
             try
@@ -81,11 +88,11 @@ namespace Library
             }
         }
 
-        private void btnFilterBy_Click(object sender, EventArgs e)
-        {
-
-        }
-
+        /// <summary>
+        /// Invokes a new form to create a loan based on the selected member
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void btnNewLoan_Click(object sender, EventArgs e)
         {
             Member selectedMember = lbMembers.SelectedItem as Member;
@@ -101,18 +108,22 @@ namespace Library
             
         }
 
-        private void button1_Click(object sender, EventArgs e)
-        {
-            CreateNewMember formCreateNewMember = new CreateNewMember(memberService);
-            formCreateNewMember.ShowDialog();
-        }
-
+        /// <summary>
+        /// Invokes a new form to create a member
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void btnCreateMember_Click(object sender, EventArgs e)
         {
             CreateNewMember formCreateNewMember = new CreateNewMember(memberService);
             formCreateNewMember.ShowDialog();
         }
 
+        /// <summary>
+        /// Removes a member from the list
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void button1_Click_1(object sender, EventArgs e)
         {
             try
@@ -130,11 +141,21 @@ namespace Library
             }
         }
 
+        /// <summary>
+        /// Closes form
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void btnBack_Click(object sender, EventArgs e)
         {
             this.Close();
         }
 
+        /// <summary>
+        /// Button to return the loan
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void btnReturnLoan_Click(object sender, EventArgs e)
         {
             try
@@ -153,9 +174,125 @@ namespace Library
             }
             catch(Exception exp)
             {
-                MessageBox.Show("Something went wrong");
+                MessageBox.Show("Unable to return load, contact support.");
                 Debug.WriteLine(exp);
             }
+        }
+
+        /// <summary>
+        /// Enables the return loan button and datepicker so that a loan can be returned
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void lbLoanHistory_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            if(lbLoanHistory.SelectedIndex >= 0)
+            {
+                btnReturnLoan.Enabled = true;
+                dpReturnDate.Enabled = true;
+            }
+            else
+            {
+                btnReturnLoan.Enabled = false;
+                dpReturnDate.Enabled = false;
+            }
+        }
+
+        /// <summary>
+        /// Button that calls the FindMemberBy method and applies the filter provided by the user
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void btnFilterBy_Click(object sender, EventArgs e)
+        {
+
+            if (cbFilterBy.SelectedIndex >= 0)
+            {
+                if(txtFilterBy.Text.Trim() != "")
+                {
+                    FindMembersBy(cbFilterBy.SelectedIndex, txtFilterBy.Text.Trim());
+                }
+                else
+                {
+                    MessageBox.Show("Please provide input.");
+                }
+            }
+            else
+            {
+                MessageBox.Show("Please select the search criteria.");
+            }
+        }
+
+        /// <summary>
+        /// Finds member(s) based on 4 criteria:
+        /// Listbox:
+        ///     0 - MemberID
+        ///     1 - Member Name
+        ///     2 - Social Number
+        /// And user text input.
+        /// </summary>
+        /// <param name="userChoice"></param>
+        /// <param name="userArg"></param>
+        private void FindMembersBy(int userChoice, string userArg)
+        {
+            try
+            {
+                switch (userChoice)
+                {
+                    case 0:
+                        int _userArgId = Convert.ToInt32(userArg);
+                        ShowAllMembers(memberService.FindMembersBy(member => member.Id == _userArgId));
+                        break;
+                    case 1:
+                        ShowAllMembers(memberService.FindMembersBy(member => member.Name.Contains(userArg)));
+                        break;
+                    case 2:
+                        ShowAllMembers(memberService.FindMembersBy(member => member.SocialNumber.Contains(userArg)));
+                        break;
+                }
+            }
+            catch(Exception exp)
+            {
+                MessageBox.Show("There was an issue searching in members, perhaps you entered an incorrect input value ?");
+                Debug.WriteLine(exp);
+            }
+        }
+
+        /// <summary>
+        /// Enables buttons if the index changes to correct values
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void lbMembers_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            if(lbMembers.SelectedIndex >= 0)
+            {
+                button1.Enabled = true;
+                btnNewLoan.Enabled = true;
+                btnShowLoanHistory.Enabled = true;
+            }
+            else
+            {
+                button1.Enabled = false;
+                btnNewLoan.Enabled = false;
+                btnShowLoanHistory.Enabled = false;
+            }
+        }
+
+        /// <summary>
+        /// Deselects the members list and restores the buttons to their original state
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void btnResetSearch_Click(object sender, EventArgs e)
+        {
+            lbMembers.ClearSelected();
+            ShowAllMembers(memberService.All());
+        }
+
+        private void MemberList_Load(object sender, EventArgs e)
+        {
+
         }
     }
 }

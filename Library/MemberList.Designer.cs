@@ -42,6 +42,7 @@
             this.button1 = new System.Windows.Forms.Button();
             this.btnReturnLoan = new System.Windows.Forms.Button();
             this.dpReturnDate = new System.Windows.Forms.DateTimePicker();
+            this.btnResetSearch = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
             // lbMembers
@@ -51,11 +52,12 @@
             this.lbMembers.Name = "lbMembers";
             this.lbMembers.Size = new System.Drawing.Size(528, 355);
             this.lbMembers.TabIndex = 0;
+            this.lbMembers.SelectedIndexChanged += new System.EventHandler(this.lbMembers_SelectedIndexChanged);
             // 
             // label1
             // 
             this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(9, 39);
+            this.label1.Location = new System.Drawing.Point(12, 44);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(59, 13);
             this.label1.TabIndex = 1;
@@ -63,7 +65,7 @@
             // 
             // btnFilterBy
             // 
-            this.btnFilterBy.Location = new System.Drawing.Point(336, 32);
+            this.btnFilterBy.Location = new System.Drawing.Point(375, 32);
             this.btnFilterBy.Name = "btnFilterBy";
             this.btnFilterBy.Size = new System.Drawing.Size(84, 28);
             this.btnFilterBy.TabIndex = 3;
@@ -73,7 +75,8 @@
             // 
             // btnShowLoanHistory
             // 
-            this.btnShowLoanHistory.Location = new System.Drawing.Point(426, 32);
+            this.btnShowLoanHistory.Enabled = false;
+            this.btnShowLoanHistory.Location = new System.Drawing.Point(291, 454);
             this.btnShowLoanHistory.Name = "btnShowLoanHistory";
             this.btnShowLoanHistory.Size = new System.Drawing.Size(114, 28);
             this.btnShowLoanHistory.TabIndex = 4;
@@ -88,13 +91,14 @@
             "ID",
             "Name",
             "Social Number"});
-            this.cbFilterBy.Location = new System.Drawing.Point(74, 37);
+            this.cbFilterBy.Location = new System.Drawing.Point(77, 38);
             this.cbFilterBy.Name = "cbFilterBy";
-            this.cbFilterBy.Size = new System.Drawing.Size(96, 21);
+            this.cbFilterBy.Size = new System.Drawing.Size(106, 21);
             this.cbFilterBy.TabIndex = 5;
             // 
             // btnNewLoan
             // 
+            this.btnNewLoan.Enabled = false;
             this.btnNewLoan.Location = new System.Drawing.Point(426, 454);
             this.btnNewLoan.Name = "btnNewLoan";
             this.btnNewLoan.Size = new System.Drawing.Size(114, 28);
@@ -115,9 +119,9 @@
             // 
             // txtFilterBy
             // 
-            this.txtFilterBy.Location = new System.Drawing.Point(176, 37);
+            this.txtFilterBy.Location = new System.Drawing.Point(189, 38);
             this.txtFilterBy.Name = "txtFilterBy";
-            this.txtFilterBy.Size = new System.Drawing.Size(148, 20);
+            this.txtFilterBy.Size = new System.Drawing.Size(180, 20);
             this.txtFilterBy.TabIndex = 9;
             // 
             // lbLoanHistory
@@ -128,6 +132,7 @@
             this.lbLoanHistory.Name = "lbLoanHistory";
             this.lbLoanHistory.Size = new System.Drawing.Size(490, 355);
             this.lbLoanHistory.TabIndex = 10;
+            this.lbLoanHistory.SelectedIndexChanged += new System.EventHandler(this.lbLoanHistory_SelectedIndexChanged);
             // 
             // label2
             // 
@@ -141,7 +146,7 @@
             // 
             // btnCreateMember
             // 
-            this.btnCreateMember.Location = new System.Drawing.Point(210, 454);
+            this.btnCreateMember.Location = new System.Drawing.Point(146, 454);
             this.btnCreateMember.Name = "btnCreateMember";
             this.btnCreateMember.Size = new System.Drawing.Size(114, 28);
             this.btnCreateMember.TabIndex = 11;
@@ -151,6 +156,7 @@
             // 
             // button1
             // 
+            this.button1.Enabled = false;
             this.button1.Location = new System.Drawing.Point(12, 454);
             this.button1.Name = "button1";
             this.button1.Size = new System.Drawing.Size(114, 28);
@@ -161,6 +167,7 @@
             // 
             // btnReturnLoan
             // 
+            this.btnReturnLoan.Enabled = false;
             this.btnReturnLoan.Location = new System.Drawing.Point(564, 454);
             this.btnReturnLoan.Name = "btnReturnLoan";
             this.btnReturnLoan.Size = new System.Drawing.Size(114, 28);
@@ -171,16 +178,28 @@
             // 
             // dpReturnDate
             // 
+            this.dpReturnDate.Enabled = false;
             this.dpReturnDate.Location = new System.Drawing.Point(684, 458);
             this.dpReturnDate.Name = "dpReturnDate";
             this.dpReturnDate.Size = new System.Drawing.Size(244, 20);
             this.dpReturnDate.TabIndex = 14;
+            // 
+            // btnResetSearch
+            // 
+            this.btnResetSearch.Location = new System.Drawing.Point(465, 32);
+            this.btnResetSearch.Name = "btnResetSearch";
+            this.btnResetSearch.Size = new System.Drawing.Size(75, 28);
+            this.btnResetSearch.TabIndex = 15;
+            this.btnResetSearch.Text = "Reset";
+            this.btnResetSearch.UseVisualStyleBackColor = true;
+            this.btnResetSearch.Click += new System.EventHandler(this.btnResetSearch_Click);
             // 
             // MemberList
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1066, 505);
+            this.Controls.Add(this.btnResetSearch);
             this.Controls.Add(this.dpReturnDate);
             this.Controls.Add(this.btnReturnLoan);
             this.Controls.Add(this.button1);
@@ -219,5 +238,6 @@
         private System.Windows.Forms.Button button1;
         private System.Windows.Forms.Button btnReturnLoan;
         private System.Windows.Forms.DateTimePicker dpReturnDate;
+        private System.Windows.Forms.Button btnResetSearch;
     }
 }

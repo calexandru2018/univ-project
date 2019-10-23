@@ -32,7 +32,7 @@ namespace Library.Services
 
         public IEnumerable<Loan> All()
         {
-            return loanRepository.All();
+            return loanRepository.All().OrderByDescending(loan => loan.StartLoanTimestamp);
         }
 
         public IEnumerable<Loan> FindLoansBy(Func<Loan, bool> expression)
