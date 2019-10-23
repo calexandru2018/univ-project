@@ -35,9 +35,9 @@
             this.button2 = new System.Windows.Forms.Button();
             this.btnReset = new System.Windows.Forms.Button();
             this.label3 = new System.Windows.Forms.Label();
-            this.bookCopyCondition = new System.Windows.Forms.TextBox();
             this.btnShowLoanHistory = new System.Windows.Forms.Button();
             this.btnClose = new System.Windows.Forms.Button();
+            this.cbBookCondition = new System.Windows.Forms.ComboBox();
             this.SuspendLayout();
             // 
             // lbBooks
@@ -158,14 +158,6 @@
             this.label3.TabIndex = 25;
             this.label3.Text = "(Select author first)";
             // 
-            // bookCopyCondition
-            // 
-            this.bookCopyCondition.Enabled = false;
-            this.bookCopyCondition.Location = new System.Drawing.Point(827, 439);
-            this.bookCopyCondition.Name = "bookCopyCondition";
-            this.bookCopyCondition.Size = new System.Drawing.Size(132, 20);
-            this.bookCopyCondition.TabIndex = 11;
-            // 
             // btnShowLoanHistory
             // 
             this.btnShowLoanHistory.Location = new System.Drawing.Point(981, 433);
@@ -187,12 +179,33 @@
             this.btnClose.UseVisualStyleBackColor = true;
             this.btnClose.Click += new System.EventHandler(this.btnClose_Click);
             // 
+            // cbBookCondition
+            // 
+            this.cbBookCondition.Enabled = false;
+            this.cbBookCondition.FormattingEnabled = true;
+            this.cbBookCondition.Items.AddRange(new object[] {
+            "10",
+            "9",
+            "8",
+            "7",
+            "6",
+            "5",
+            "4",
+            "3",
+            "2",
+            "1"});
+            this.cbBookCondition.Location = new System.Drawing.Point(827, 439);
+            this.cbBookCondition.Name = "cbBookCondition";
+            this.cbBookCondition.Size = new System.Drawing.Size(121, 21);
+            this.cbBookCondition.TabIndex = 28;
+            // 
             // LibraryForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.AutoScroll = true;
             this.ClientSize = new System.Drawing.Size(1106, 675);
+            this.Controls.Add(this.cbBookCondition);
             this.Controls.Add(this.btnClose);
             this.Controls.Add(this.btnShowLoanHistory);
             this.Controls.Add(this.label3);
@@ -202,7 +215,6 @@
             this.Controls.Add(this.lbAvailCopies);
             this.Controls.Add(this.btnByAuthor);
             this.Controls.Add(this.addNewBookCopy);
-            this.Controls.Add(this.bookCopyCondition);
             this.Controls.Add(this.label15);
             this.Controls.Add(this.label2);
             this.Controls.Add(this.lbAuthors);
@@ -230,9 +242,9 @@
         private System.Windows.Forms.Button button2;
         private System.Windows.Forms.Button btnReset;
         private System.Windows.Forms.Label label3;
-        private System.Windows.Forms.TextBox bookCopyCondition;
         private System.Windows.Forms.Button btnShowLoanHistory;
         private System.Windows.Forms.Button btnClose;
+        private System.Windows.Forms.ComboBox cbBookCondition;
     }
 }
 

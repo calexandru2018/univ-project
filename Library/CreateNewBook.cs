@@ -20,6 +20,11 @@ namespace Library
         BookService bookService;
         AuthorService authorService;
 
+        /// <summary>
+        /// Form constructor.
+        /// </summary>
+        /// <param name="auths"></param>
+        /// <param name="bs"></param>
         public CreateNewBook(AuthorService auths, BookService bs)
         {
             authorService = auths;
@@ -45,11 +50,21 @@ namespace Library
             }
         }
 
+        /// <summary>
+        /// Closes the form
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void btnBack_Click(object sender, EventArgs e)
         {
             this.Close();
         }
 
+        /// <summary>
+        /// Button to create a new book
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void btnCreateNewBook_Click(object sender, EventArgs e)
         {
             Author addNewAuthor;
@@ -92,11 +107,11 @@ namespace Library
             }
         }
 
-        private void CreateNewBook_Load(object sender, EventArgs e)
-        {
-
-        }
-
+        /// <summary>
+        /// Checkbox that enbales the authors filedname (if new author is to be added)
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void chckAddNewAuthor_CheckedChanged(object sender, EventArgs e)
         {
             if (chckAddNewAuthor.Checked)
@@ -107,6 +122,76 @@ namespace Library
             {
                 txtAuthorName.Enabled = false;
             }
+        }
+
+        /// <summary>
+        /// Methods that checks if the "Add New Book" can be enabled or not.
+        /// </summary>
+        private void EnableAddNewBookBtn()
+        {
+            if (chckAddNewAuthor.Checked)
+            {
+                btnCreateNewBook.Enabled = (txtBookISBN.Text.Trim() != "" && txtBookTitle.Text.Trim() != "" && txtBookDesc.Text.Trim() != "" && txtAuthorName.Text.Trim() != "");
+            }
+            else
+            {
+                btnCreateNewBook.Enabled = (txtBookISBN.Text.Trim() != "" && txtBookTitle.Text.Trim() != "" && txtBookDesc.Text.Trim() != "" && lbAuthor.SelectedItem != null);
+            }
+        }
+
+        /// <summary>
+        /// Whenever the value changes, it should call EnableAddNewBookBtn() 
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void txtBookISBN_TextChanged(object sender, EventArgs e)
+        {
+            EnableAddNewBookBtn();
+        }
+
+        /// <summary>
+        /// Whenever the value changes, it should call EnableAddNewBookBtn() 
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void txtBookTitle_TextChanged(object sender, EventArgs e)
+        {
+            EnableAddNewBookBtn();
+        }
+
+        /// <summary>
+        /// Whenever the value changes, it should call EnableAddNewBookBtn() 
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void txtBookDesc_TextChanged(object sender, EventArgs e)
+        {
+            EnableAddNewBookBtn();
+        }
+
+        /// <summary>
+        /// Whenever the value changes, it should call EnableAddNewBookBtn() 
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void txtAuthorName_TextChanged(object sender, EventArgs e)
+        {
+            EnableAddNewBookBtn();
+        }
+
+        /// <summary>
+        /// Whenever the value changes, it should call EnableAddNewBookBtn() 
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void lbAuthor_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            EnableAddNewBookBtn();
+        }
+
+        private void CreateNewBook_Load(object sender, EventArgs e)
+        {
+
         }
     }
 }

@@ -49,6 +49,7 @@
             this.txtBookISBN.Name = "txtBookISBN";
             this.txtBookISBN.Size = new System.Drawing.Size(202, 20);
             this.txtBookISBN.TabIndex = 0;
+            this.txtBookISBN.TextChanged += new System.EventHandler(this.txtBookISBN_TextChanged);
             // 
             // txtBookTitle
             // 
@@ -56,6 +57,7 @@
             this.txtBookTitle.Name = "txtBookTitle";
             this.txtBookTitle.Size = new System.Drawing.Size(200, 20);
             this.txtBookTitle.TabIndex = 1;
+            this.txtBookTitle.TextChanged += new System.EventHandler(this.txtBookTitle_TextChanged);
             // 
             // txtBookDesc
             // 
@@ -63,6 +65,7 @@
             this.txtBookDesc.Name = "txtBookDesc";
             this.txtBookDesc.Size = new System.Drawing.Size(202, 20);
             this.txtBookDesc.TabIndex = 2;
+            this.txtBookDesc.TextChanged += new System.EventHandler(this.txtBookDesc_TextChanged);
             // 
             // label8
             // 
@@ -109,6 +112,7 @@
             this.txtAuthorName.Name = "txtAuthorName";
             this.txtAuthorName.Size = new System.Drawing.Size(202, 20);
             this.txtAuthorName.TabIndex = 4;
+            this.txtAuthorName.TextChanged += new System.EventHandler(this.txtAuthorName_TextChanged);
             // 
             // label1
             // 
@@ -130,6 +134,7 @@
             // 
             // btnCreateNewBook
             // 
+            this.btnCreateNewBook.Enabled = false;
             this.btnCreateNewBook.Location = new System.Drawing.Point(10, 293);
             this.btnCreateNewBook.Name = "btnCreateNewBook";
             this.btnCreateNewBook.Size = new System.Drawing.Size(75, 28);
@@ -155,6 +160,7 @@
             this.lbAuthor.Name = "lbAuthor";
             this.lbAuthor.Size = new System.Drawing.Size(227, 186);
             this.lbAuthor.TabIndex = 8;
+            this.lbAuthor.SelectedIndexChanged += new System.EventHandler(this.lbAuthor_SelectedIndexChanged);
             // 
             // CreateNewBook
             // 

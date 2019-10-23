@@ -33,50 +33,81 @@ namespace Library
             // sure all the repositories created use the same context.
             RepositoryFactory repFactory = new RepositoryFactory(context);
 
+            // Service intialization
             this.bookService = new BookService(repFactory);
             this.authorService = new AuthorService(repFactory);
             this.bookCopyService = new BookCopyService(repFactory);
             this.memberService = new MemberService(repFactory);
             this.loanService = new LoanService(repFactory);
 
+            // Event declaration
             this.bookService.Updated += BookService_Updated;
             this.authorService.Updated += AuthorService_Updated;
             this.memberService.Updated += MemberService_Updated;
             this.loanService.Updated += LoanService_Updated;
             this.bookCopyService.Updated += BookCopyService_Updated;
 
+            // Start up methods that populate the lists
             ShowAllBooks(bookService.All());
             ShowAllAuthors(authorService.All());
             ShowAvailableCopies(bookCopyService.AllAvailable());
         }
 
+        /// <summary>
+        /// BookCopy service method
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void BookCopyService_Updated(object sender, EventArgs e)
         {
             ShowAvailableCopies(bookCopyService.AllAvailable());
         }
 
+        /// <summary>
+        /// Loan service event method
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void LoanService_Updated(object sender, EventArgs e)
         {
             ShowAvailableCopies(bookCopyService.AllAvailable());
         }
 
+        /// <summary>
+        /// Member service event method
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void MemberService_Updated(object sender, EventArgs e)
         {
             ShowAvailableCopies(bookCopyService.AllAvailable());
         }
 
-
+        /// <summary>
+        /// Author service event method
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void AuthorService_Updated(object sender, EventArgs e)
         {
             ShowAllAuthors(authorService.All());
         }
 
+        /// <summary>
+        /// Book service event method
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void BookService_Updated(object sender, EventArgs e)
         {
             ShowAvailableCopies(bookCopyService.AllAvailable());
             ShowAllBooks(bookService.All());
         }
 
+        /// <summary>
+        /// Shows all books
+        /// </summary>
+        /// <param name="books"></param>
         private void ShowAllBooks(IEnumerable<Book> books)
         {
             lbBooks.Items.Clear();
@@ -86,6 +117,10 @@ namespace Library
             }
         }
 
+        /// <summary>
+        /// Shows all authors
+        /// </summary>
+        /// <param name="authors"></param>
         private void ShowAllAuthors(IEnumerable<Author> authors)
         {
             lbAuthors.Items.Clear();
@@ -95,6 +130,10 @@ namespace Library
             }
         }
 
+        /// <summary>
+        /// Shows all available copies
+        /// </summary>
+        /// <param name="bookCopies"></param>
         private void ShowAvailableCopies(IEnumerable<BookCopy> bookCopies)
         {
             lbAvailCopies.Items.Clear();
@@ -104,21 +143,25 @@ namespace Library
             }
         }
 
+        /// <summary>
+        /// Button that adds new book copies
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void addNewBookCopy_Click(object sender, EventArgs e)
         {
-            try
+            if(cbBookCondition.SelectedIndex >= 0 )
             {
                 Book b = lbBooks.SelectedItem as Book;
-                BookCopy bookCopy = new BookCopy(b, Convert.ToInt32(bookCopyCondition.Text));
+                BookCopy bookCopy = new BookCopy(b, Convert.ToInt32(cbBookCondition.SelectedItem.ToString()));
                 bookCopyService.Add(bookCopy);
                 Debug.WriteLine($"Added new book, {bookCopy.BookObject.Title} condition {bookCopy.Condition}");
             }
-            catch
+            else
             {
-                MessageBox.Show("Need to choose a book");
+                MessageBox.Show("You need to specify a condition");
             }
         }
-
 
         /// <summary>
         /// Filters books by selected author
@@ -175,12 +218,22 @@ namespace Library
             formLoanHistory.ShowDialog();
         }
 
+        /// <summary>
+        /// Clears the selected item in authors, resetting the list of books to default (shows all books) 
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void btnReset_Click(object sender, EventArgs e)
         {
             lbAuthors.ClearSelected();
             ShowAllBooks(bookService.All());
         }
 
+        /// <summary>
+        /// When the index changes, it should enable the button to search by author
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void lbAuthors_SelectedIndexChanged(object sender, EventArgs e)
         {
             if(lbAuthors.SelectedIndex >= 0)
@@ -193,28 +246,43 @@ namespace Library
             }
         }
 
-        private void LibraryForm_Load(object sender, EventArgs e)
-        {
-
-        }
-
+        /// <summary>
+        /// To close actual form
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void btnClose_Click(object sender, EventArgs e)
         {
             this.Close();
         }
 
+        /// <summary>
+        /// When the book index changes, it should enablde buttons and combobox to add new copy
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void lbBooks_SelectedIndexChanged(object sender, EventArgs e)
         {
-            if(lbBooks.SelectedIndex >= 0)
+            if (lbBooks.SelectedIndex >= 0)
             {
                 addNewBookCopy.Enabled = true;
-                bookCopyCondition.Enabled = true;
+                cbBookCondition.Enabled = true;
             }
             else
             {
                 addNewBookCopy.Enabled = false;
-                bookCopyCondition.Enabled = false;
+                cbBookCondition.Enabled = false;
             }
+        }
+
+        /// <summary>
+        /// Don't ask me.
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void LibraryForm_Load(object sender, EventArgs e)
+        {
+
         }
     }
 }
