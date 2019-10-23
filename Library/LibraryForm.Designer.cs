@@ -121,9 +121,10 @@
             // 
             // button1
             // 
-            this.button1.Location = new System.Drawing.Point(981, 479);
+            this.button1.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.button1.Location = new System.Drawing.Point(957, 540);
             this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(113, 30);
+            this.button1.Size = new System.Drawing.Size(137, 56);
             this.button1.TabIndex = 22;
             this.button1.Text = "Manage Members";
             this.button1.UseVisualStyleBackColor = true;
@@ -171,7 +172,7 @@
             // btnClose
             // 
             this.btnClose.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnClose.Location = new System.Drawing.Point(957, 604);
+            this.btnClose.Location = new System.Drawing.Point(12, 540);
             this.btnClose.Name = "btnClose";
             this.btnClose.Size = new System.Drawing.Size(137, 56);
             this.btnClose.TabIndex = 27;
@@ -204,7 +205,7 @@
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.AutoScroll = true;
-            this.ClientSize = new System.Drawing.Size(1106, 675);
+            this.ClientSize = new System.Drawing.Size(1106, 612);
             this.Controls.Add(this.cbBookCondition);
             this.Controls.Add(this.btnClose);
             this.Controls.Add(this.btnShowLoanHistory);
