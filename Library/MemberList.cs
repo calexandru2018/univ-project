@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
+using System.Diagnostics;
 using System.Drawing;
 using System.Linq;
 using System.Text;
@@ -150,9 +151,10 @@ namespace Library
                 loanService.Edit(selectedLoan);
                 MessageBox.Show(message);
             }
-            catch
+            catch(Exception exp)
             {
                 MessageBox.Show("Something went wrong");
+                Debug.WriteLine(exp);
             }
         }
     }

@@ -28,7 +28,7 @@ namespace Library
 
         private void LoanService_Updated(object sender, EventArgs e)
         {
-            throw new NotImplementedException();
+            ShowAllLoans(loanService.All());
         }
 
         private void btnFilterBy_Click(object sender, EventArgs e)

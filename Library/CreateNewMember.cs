@@ -24,20 +24,33 @@ namespace Library
             InitializeComponent();
         }
 
-        // Add new member, can´t change button name : (
+        /// <summary>
+        /// Creates a new member
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void button1_Click(object sender, EventArgs e)
         {
             string SocialNumber = addMemberSocialNum.Text;
-            string Name = addMemberName.Text;
+            string Name = addMemberName.Text.Trim();
             Regex rx = new Regex(@"^([0-9]{6,8}-[0-9]{4}|[0-9]{6,8})$");
             if (rx.Match(SocialNumber).Success)
             {
-                Member newMember = new Member()
+                if(Name != "")
                 {
-                    SocialNumber = SocialNumber,
-                    MemberSince = DateTime.Now
-                };
-                memberService.Add(newMember);
+                    Member newMember = new Member()
+                    {
+                        Name = Name,
+                        SocialNumber = SocialNumber,
+                        MemberSince = DateTime.Now
+                    };
+                    memberService.Add(newMember);
+                }
+                else
+                {
+                    MessageBox.Show("Please type your name.");
+                }
+                
             }
             else
             {
@@ -45,6 +58,11 @@ namespace Library
             }
         }
 
+        /// <summary>
+        /// Closes the form
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void btnBack_Click(object sender, EventArgs e)
         {
             this.Close();
