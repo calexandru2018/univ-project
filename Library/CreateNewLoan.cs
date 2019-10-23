@@ -51,6 +51,10 @@ namespace Library
             ShowAvailableCopies(bookCopyService.AllAvailable());
         }
 
+        /// <summary>
+        /// Shows all available copies
+        /// </summary>
+        /// <param name="bookCopies"></param>
         private void ShowAvailableCopies(IEnumerable<BookCopy> bookCopies)
         {
             lbAvailCopies.Items.Clear();
@@ -62,6 +66,11 @@ namespace Library
             Debug.WriteLine("Rendering show all available copies inside create new");
         }
 
+        /// <summary>
+        /// Creates a new loan, based on the previously selected user from MemberList form
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void btnCreate_Click(object sender, EventArgs e)
         {
             try
@@ -86,6 +95,11 @@ namespace Library
             }
         }
 
+        /// <summary>
+        /// Finds a member by ID
+        /// </summary>
+        /// <param name="memberId"></param>
+        /// <returns></returns>
         private Member FindMemberBiId(int memberId)
         {
             return memberService.Find(memberId);
@@ -96,6 +110,11 @@ namespace Library
             this.Close();
         }
 
+        /// <summary>
+        /// Button that calls for FindBookBy
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void btnFilterBy_Click(object sender, EventArgs e)
         {
             int _cbFIlterBy = cbFilterBy.SelectedIndex;
@@ -110,10 +129,17 @@ namespace Library
             }
         }
 
+        /// <summary>
+        /// Method that finds book copies based on 3 criteria
+        /// Listbox:
+        ///     0 - Book title
+        ///     1 - Author name
+        /// And user input
+        /// </summary>
+        /// <param name="searchOption"></param>
+        /// <param name="searchTerm"></param>
         private void FindBookBy(int searchOption, string searchTerm)
         {
-            // 0 - Book title
-            // 1 - Author
             IEnumerable<BookCopy> bookCopies = bookCopyService.FindBookByAuthor(searchTerm);
 
             if (searchOption == 0)
