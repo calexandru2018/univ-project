@@ -29,16 +29,30 @@ namespace Library.Services
             OnUpdated();
         }
 
+        /// <summary>
+        /// return all books
+        /// </summary>
+        /// <returns></returns>
         public IEnumerable<Book> All()
         {
             return bookRepository.All().OrderByDescending(book => book.Id);
         }
 
+        /// <summary>
+        /// returns all books by user providade author name
+        /// </summary>
+        /// <param name="author"></param>
+        /// <returns></returns>
         public IEnumerable<Book> GetAllByAuthor(Author author)
         {
             return bookRepository.All().Where(b => b.BookAuthorId == author.Id);
         } 
 
+        /// <summary>
+        /// returns books that contain a certain pattern in their title
+        /// </summary>
+        /// <param name="a"></param>
+        /// <returns></returns>
         public IEnumerable<Book> GetAllThatContainsInTitle(string a)
         {
             return bookRepository.All().Where(b => b.Title.Contains(a));

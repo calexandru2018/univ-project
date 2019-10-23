@@ -25,21 +25,39 @@ namespace Library.Services
             OnUpdated();
         }
 
+        /// <summary>
+        /// Return all available bookcopies
+        /// </summary>
+        /// <returns></returns>
         public IEnumerable<BookCopy> AllAvailable()
         {
             return bookCopyRepository.AllAvailable().OrderBy(book => book.BookObject.Id);
         }
 
+        /// <summary>
+        /// Returns all bookcopies
+        /// </summary>
+        /// <returns></returns>
         public IEnumerable<BookCopy> All()
         {
             return bookCopyRepository.All().OrderBy(book => book.BookObject.Id);
         }
 
+        /// <summary>
+        /// Finds book(s) by user providad book title
+        /// </summary>
+        /// <param name="title"></param>
+        /// <returns></returns>
         public IEnumerable<BookCopy> FindBookByTitle(string title)
         {
             return bookCopyRepository.AllAvailable().Where(bookCopy => bookCopy.BookObject.Title.Contains(title));
         }
-
+        
+        /// <summary>
+        /// Finds book(s) by user provided author name
+        /// </summary>
+        /// <param name="author"></param>
+        /// <returns></returns>
         public IEnumerable<BookCopy> FindBookByAuthor(string author)
         {
             return bookCopyRepository.AllAvailable().Where(bookCopy => bookCopy.BookObject.BookAuthor.Name.Contains(author));

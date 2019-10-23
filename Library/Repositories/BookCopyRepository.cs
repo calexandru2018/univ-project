@@ -28,11 +28,14 @@ namespace Library.Repositories
             return context.BookCopies;
         }
 
+        /// <summary>
+        /// Returns all available book copies
+        /// </summary>
+        /// <returns></returns>
         public IEnumerable<BookCopy> AllAvailable()
         {
             var loans = context.Loans;
             var bookCopies = context.BookCopies;
-            //return context.BookCopies.Where(bookCopy => !loans.Where(loan=>loan.ReturnLoanTimestamp == null).Any(loan => loan.BookCopyId == bookCopy.Id));
             return bookCopies.Except(loans.Where(l => l.ReturnLoanTimestamp == null).Select(l => l.bookCopy));
         }
         

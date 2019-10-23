@@ -25,16 +25,30 @@ namespace Library.Services
             OnUpdated();
         }
 
+        /// <summary>
+        /// Returns all loans based on a member
+        /// </summary>
+        /// <param name="member"></param>
+        /// <returns></returns>
         public IEnumerable<Loan> AllMemberLoans(Member member)
         {
             return loanRepository.All().Where(loan => loan.MemberId == member.Id);
         }
 
+        /// <summary>
+        /// Returns all loans ever made
+        /// </summary>
+        /// <returns></returns>
         public IEnumerable<Loan> All()
         {
             return loanRepository.All().OrderByDescending(loan => loan.StartLoanTimestamp);
         }
 
+        /// <summary>
+        /// Returns loans based on a lambda expression
+        /// </summary>
+        /// <param name="expression"></param>
+        /// <returns></returns>
         public IEnumerable<Loan> FindLoansBy(Func<Loan, bool> expression)
         {
             return loanRepository.All().Where(expression);

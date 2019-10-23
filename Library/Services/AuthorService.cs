@@ -25,6 +25,10 @@ namespace Library.Services
             OnUpdated();
         }
 
+        /// <summary>
+        /// Returns all authors ordered by their id
+        /// </summary>
+        /// <returns></returns>
         public IEnumerable<Author> All()
         {
             return authorRepository.All().OrderByDescending(author => author.Id);

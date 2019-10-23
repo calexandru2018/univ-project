@@ -25,16 +25,30 @@ namespace Library.Services
             OnUpdated();
         }
 
+        /// <summary>
+        /// returns all members
+        /// </summary>
+        /// <returns></returns>
         public IEnumerable<Member> All()
         {
             return memberRepository.All();
         }
 
+        /// <summary>
+        /// Return members based on lamda expession
+        /// </summary>
+        /// <param name="expression"></param>
+        /// <returns></returns>
         public IEnumerable<Member> FindMembersBy(Func<Member, bool> expression)
         {
             return memberRepository.All().Where(expression);
         }
 
+        /// <summary>
+        /// returns a user based on user id
+        /// </summary>
+        /// <param name="id"></param>
+        /// <returns></returns>
         public Member Find(int id)
         {
             return memberRepository.Find(id);
