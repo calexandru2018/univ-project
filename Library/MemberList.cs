@@ -244,7 +244,7 @@ namespace Library
                         ShowAllMembers(memberService.FindMembersBy(member => member.Id == _userArgId));
                         break;
                     case 1:
-                        ShowAllMembers(memberService.FindMembersBy(member => member.Name.Contains(userArg)));
+                        ShowAllMembers(memberService.FindMembersBy(member => member.Name.ToLower().Contains(userArg.ToLower())));
                         break;
                     case 2:
                         ShowAllMembers(memberService.FindMembersBy(member => member.SocialNumber.Contains(userArg)));

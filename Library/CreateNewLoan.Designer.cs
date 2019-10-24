@@ -35,13 +35,14 @@
             this.lbAvailCopies = new System.Windows.Forms.ListBox();
             this.btnBack = new System.Windows.Forms.Button();
             this.btnCreate = new System.Windows.Forms.Button();
+            this.btnReset = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
             // txtFilterBy
             // 
             this.txtFilterBy.Location = new System.Drawing.Point(176, 22);
             this.txtFilterBy.Name = "txtFilterBy";
-            this.txtFilterBy.Size = new System.Drawing.Size(274, 20);
+            this.txtFilterBy.Size = new System.Drawing.Size(184, 20);
             this.txtFilterBy.TabIndex = 15;
             this.txtFilterBy.TextChanged += new System.EventHandler(this.txtFilterBy_TextChanged);
             // 
@@ -58,7 +59,7 @@
             // 
             // btnFilterBy
             // 
-            this.btnFilterBy.Location = new System.Drawing.Point(456, 17);
+            this.btnFilterBy.Location = new System.Drawing.Point(366, 17);
             this.btnFilterBy.Name = "btnFilterBy";
             this.btnFilterBy.Size = new System.Drawing.Size(84, 28);
             this.btnFilterBy.TabIndex = 12;
@@ -103,11 +104,22 @@
             this.btnCreate.UseVisualStyleBackColor = true;
             this.btnCreate.Click += new System.EventHandler(this.btnCreate_Click);
             // 
+            // btnReset
+            // 
+            this.btnReset.Location = new System.Drawing.Point(456, 17);
+            this.btnReset.Name = "btnReset";
+            this.btnReset.Size = new System.Drawing.Size(84, 28);
+            this.btnReset.TabIndex = 17;
+            this.btnReset.Text = "Reset";
+            this.btnReset.UseVisualStyleBackColor = true;
+            this.btnReset.Click += new System.EventHandler(this.btnReset_Click);
+            // 
             // CreateNewLoan
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(552, 486);
+            this.Controls.Add(this.btnReset);
             this.Controls.Add(this.btnBack);
             this.Controls.Add(this.btnCreate);
             this.Controls.Add(this.txtFilterBy);
@@ -131,5 +143,6 @@
         private System.Windows.Forms.Button btnBack;
         private System.Windows.Forms.Button btnCreate;
         private System.Windows.Forms.TextBox txtFilterBy;
+        private System.Windows.Forms.Button btnReset;
     }
 }

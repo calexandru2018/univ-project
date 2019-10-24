@@ -226,6 +226,8 @@ namespace Library
         private void btnReset_Click(object sender, EventArgs e)
         {
             lbAuthors.ClearSelected();
+            addNewBookCopy.Enabled = false;
+            cbBookCondition.Enabled = false;
             ShowAllBooks(bookService.All());
         }
 
@@ -263,7 +265,7 @@ namespace Library
         /// <param name="e"></param>
         private void lbBooks_SelectedIndexChanged(object sender, EventArgs e)
         {
-            if (lbBooks.SelectedIndex >= 0)
+            if (lbBooks.SelectedIndex >= 0 || lbBooks.SelectedItem != null)
             {
                 addNewBookCopy.Enabled = true;
                 cbBookCondition.Enabled = true;

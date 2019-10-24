@@ -55,7 +55,7 @@ namespace Library.Services
         /// <returns></returns>
         public IEnumerable<Book> GetAllThatContainsInTitle(string a)
         {
-            return bookRepository.All().Where(b => b.Title.Contains(a));
+            return bookRepository.All().Where(b => b.Title.ToLower().Contains(a.ToLower()));
         }
 
         /// <summary>

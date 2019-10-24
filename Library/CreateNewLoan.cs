@@ -170,5 +170,16 @@ namespace Library
         {
 
         }
+
+        /// <summary>
+        /// Resets the search results 
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void btnReset_Click(object sender, EventArgs e)
+        {
+            lbAvailCopies.ClearSelected();
+            ShowAvailableCopies(bookCopyService.AllAvailable());
+        }
     }
 }

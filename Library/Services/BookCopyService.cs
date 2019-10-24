@@ -50,7 +50,7 @@ namespace Library.Services
         /// <returns></returns>
         public IEnumerable<BookCopy> FindBookByTitle(string title)
         {
-            return bookCopyRepository.AllAvailable().Where(bookCopy => bookCopy.BookObject.Title.Contains(title));
+            return bookCopyRepository.AllAvailable().Where(bookCopy => bookCopy.BookObject.Title.ToLower().Contains(title.ToLower())).OrderBy(book => book.BookObject.Title);
         }
         
         /// <summary>
@@ -60,7 +60,7 @@ namespace Library.Services
         /// <returns></returns>
         public IEnumerable<BookCopy> FindBookByAuthor(string author)
         {
-            return bookCopyRepository.AllAvailable().Where(bookCopy => bookCopy.BookObject.BookAuthor.Name.Contains(author));
+            return bookCopyRepository.AllAvailable().Where(bookCopy => bookCopy.BookObject.BookAuthor.Name.ToLower().Contains(author.ToLower())).OrderBy(book => book.BookObject.Title);
         }
 
         public void Edit(BookCopy b)

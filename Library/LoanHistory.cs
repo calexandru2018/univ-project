@@ -94,14 +94,14 @@ namespace Library
                         ShowAllLoans(loanService.FindLoansBy(loan => loan.bookCopy.Condition == _userArgCond));
                         break;
                     case 2:
-                        ShowAllLoans(loanService.FindLoansBy(loan => loan.bookCopy.BookObject.Title.Contains(userArg)));
+                        ShowAllLoans(loanService.FindLoansBy(loan => loan.bookCopy.BookObject.Title.ToLower().Contains(userArg.ToLower())));
                         break;
                     case 3:
                         int _userArgMemberId = Convert.ToInt32(userArg);
                         ShowAllLoans(loanService.FindLoansBy(loan => loan.MemberId == _userArgMemberId));
                         break;
                     case 4:
-                        ShowAllLoans(loanService.FindLoansBy(loan => loan.member.Name.Contains(userArg)));
+                        ShowAllLoans(loanService.FindLoansBy(loan => loan.member.Name.ToLower().Contains(userArg.ToLower())));
                         break;
                 }
             }

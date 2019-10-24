@@ -31,7 +31,7 @@ namespace Library.Services
         /// <returns></returns>
         public IEnumerable<Author> All()
         {
-            return authorRepository.All().OrderByDescending(author => author.Id);
+            return authorRepository.All().OrderBy(author => author.Name);
         }
 
         // Space to create custom functions to search, edit, delete authors
