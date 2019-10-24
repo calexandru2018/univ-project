@@ -150,16 +150,17 @@ namespace Library
         /// <param name="e"></param>
         private void addNewBookCopy_Click(object sender, EventArgs e)
         {
-            if(cbBookCondition.SelectedIndex >= 0 )
+            try
             {
                 Book b = lbBooks.SelectedItem as Book;
                 BookCopy bookCopy = new BookCopy(b, Convert.ToInt32(cbBookCondition.SelectedItem.ToString()));
                 bookCopyService.Add(bookCopy);
                 Debug.WriteLine($"Added new book, {bookCopy.BookObject.Title} condition {bookCopy.Condition}");
             }
-            else
+            catch(Exception exp)
             {
                 MessageBox.Show("You need to specify a condition");
+                Debug.WriteLine(exp);
             }
         }
 

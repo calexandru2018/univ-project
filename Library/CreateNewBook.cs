@@ -96,7 +96,7 @@ namespace Library
                 }
                 else
                 {
-                    MessageBox.Show("Invalid ISBN");
+                    MessageBox.Show("Invalid ISBN, should be a combination of 10 or 13 digits");
                 }
                 
             }
